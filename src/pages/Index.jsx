@@ -1,17 +1,13 @@
 import React from 'react'
-import { connect } from 'react-redux';
-import { Provider } from 'react-redux'
-import colorList from '../assets/colors'
-import { configureStore } from '@reduxjs/toolkit'
 import './styles.css'
-import RandomQuote from './randomQuote';
 
 import { Link } from 'react-router-dom';
 
 const Index = () => {
     return (
             <div>
-                    <Link to='/randomquote'>Random Quote</Link>
+                    <Link to='/randomquote'><button class='btn btn-primary mx-2'>Random Quote</button></Link>
+                    <Link to='/markdownpreviewer'><button class='btn btn-primary mx-2'>Mark Down Previewer</button></Link>
             </div>      
     )
 }

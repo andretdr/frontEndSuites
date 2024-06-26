@@ -5,15 +5,17 @@ import './pages/styles.css'
 
 import Index from './pages/Index.jsx'
 import RandomQuote from './pages/randomQuote.jsx'
+import MarkDownPreviewer from './pages/markDownPreviewer.jsx'
 import Error from './pages/error.jsx'
 
 const routerVar = createBrowserRouter([
   { path: '/', element: <Index />, errorElement: <Error /> },
-  { path: '/randomquote', element: <RandomQuote />, errorElement: <Error /> }
+  { path: '/randomquote', element: <RandomQuote />, errorElement: <Error /> },
+  { path: '/markdownpreviewer', element: <MarkDownPreviewer />, errorElement: <Error /> }
+  
 
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <RouterProvider router={routerVar} />
-
 )
