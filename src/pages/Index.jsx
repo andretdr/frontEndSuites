@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom';
 const Index = () => {
     return (
             <div>
-                    <Link to='/randomquote'><button class='btn btn-primary mx-2'>Random Quote</button></Link>
-                    <Link to='/markdownpreviewer'><button class='btn btn-primary mx-2'>Mark Down Previewer</button></Link>
+                    <Link to='/randomquote'><button className='btn btn-primary mx-2'>Random Quote</button></Link>
+                    <Link to='/markdownpreviewer'><button className='btn btn-primary mx-2'>Mark Down Previewer</button></Link>
+                    <Link to='/drummachine'><button className='btn btn-primary mx-2'>Drum Machine</button></Link>
             </div>      
     )
 }
