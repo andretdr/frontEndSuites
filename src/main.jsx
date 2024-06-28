@@ -8,6 +8,7 @@ import RandomQuote from './pages/randomQuote.jsx'
 import MarkDownPreviewer from './pages/markDownPreviewer.jsx'
 import DrumMachine from './pages/drumMachine.jsx'
 import JsCalculator from './pages/jsCalculator.jsx'
+import Clock255 from './pages/clock255.jsx'
 import Error from './pages/error.jsx'
 
 const routerVar = createBrowserRouter([
@@ -15,7 +16,8 @@ const routerVar = createBrowserRouter([
   { path: '/randomquote', element: <RandomQuote />, errorElement: <Error /> },
   { path: '/markdownpreviewer', element: <MarkDownPreviewer />, errorElement: <Error /> },
   { path: '/drummachine', element: <DrumMachine />, errorElement: <Error /> },
-  { path: '/jscalculator', element: <JsCalculator />, errorElement: <Error /> }
+  { path: '/jscalculator', element: <JsCalculator />, errorElement: <Error /> },
+  { path: '/clock255', element: <Clock255 />, errorElement: <Error /> }
   
 
 ]);
