@@ -37,10 +37,13 @@ const JsCalculator = () =>{
     const[repeatDec, setRepeatDec] = useState(false);
 
     const operatorReturn = (operator, state) =>{
+        // if prev entry was operator
         if (state.formulaStr[state.formulaStr.length-1].search(/[+*/-]/) > -1)
-            if (operator !== '-')
-                return {currStr: state.currStr, formulaStr: state.formulaStr.slice(0, state.formulaStr.length-1).concat(operator), reset: true }
-
+            if (operator !== '-') // if current entry is not '-'
+                return {currStr: state.currStr, formulaArr: [...state.formulaArr.slice(0, state.formulaArr.length-1), operator], formulaStr: state.formulaStr.slice(0, state.formulaStr.length-1).concat(operator), reset: true }
+            else { // if its negative
+                return {currStr: '-', formulaArr: state.formulaArr, formulaStr: state.formulaStr.concat(operator), reset: false }
+            }   
         return (
         {currStr: state.currStr, formulaArr: [...state.formulaArr, state.currStr, operator], formulaStr: state.formulaStr.concat(operator), reset: true })
     
@@ -67,9 +70,11 @@ const JsCalculator = () =>{
 
     const infixToPostFix = (state) => {
         const formstr = state.formulaStr;
+        const formarr = state.formulaArr;
         let postfixstr = '';
         let stack = [];
 
+        console.log(formarr);
         /** checks if the topstack is greater or equal in precedence to operand */
         const shouldPopStack =(operand)=>{
 
@@ -96,25 +101,25 @@ const JsCalculator = () =>{
             )
         }
 
-        // SCANNING STR
+        // SCANNING ARR
 
-        for (let i=0; i<formstr.length; i++) {
+        for (let item of formarr) {
             // if its a digit or dec
-            if (formstr[i].search(/[0-9.]/) != -1)
-                postfixstr += formstr[i];
+            if (item.search(/[0-9.]/) > -1)
+                postfixstr += item;
             // elseif its an operator
-            else if (formstr[i].search(/[-+*=/]/) != -1){
+            else if (item.search(/[-+*=/]/) > -1){
                 postfixstr += ",";
-                while (shouldPopStack(formstr[i])) {
+                while (shouldPopStack(item)) {
                     // pop operand from stack, append to postfixstr
                     postfixstr += stack.pop() + ",";
                 }
-                stack.push(formstr[i])
+                stack.push(item)
             }
         }
         while (stack.length != 0)
             postfixstr += "," + stack.pop();
-
+        console.log('postfixstr:' + postfixstr)
         return postfixstr;
     }
 
