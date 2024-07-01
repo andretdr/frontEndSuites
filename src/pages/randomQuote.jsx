@@ -24,7 +24,7 @@ const colorIndex = () => {
 const Page = () => {
     // useSelector HOOK
     const bgColor = useSelector((reduxState) => reduxState.color)
-    return  <div className='container-fluid page-full' style={{backgroundColor: bgColor}}> 
+    return  <div className='container-md page-full ' style={{backgroundColor: bgColor}}> 
                 <QuoteBox />
             </div>
 }
