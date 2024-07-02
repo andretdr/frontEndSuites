@@ -1,32 +1,120 @@
+/** 
+ * THIS PROJECT USES REACT, REDUX, BOOTSTRAP, CSS
+*/
+
 import React, { useEffect, useState } from 'react'
 import { Provider } from 'react-redux'
 import colorList from '../assets/colors'
 import { configureStore } from '@reduxjs/toolkit'
-import './styles.css'
+import './randomQuote.css'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
+import { ArrowRightSquare } from 'react-bootstrap-icons'
+import { randomQuoteWriteUp } from '../assets/writeup'
 
+//  CONSTANTS //
 
-/** 
- * THIS PROJECT USES REACT, REDUX, BOOTSTRAP, BEM
-*/
-
-
-//  returns random index for BG color
+/** returns random index for BG color */
 const colorIndex = () => {
   let index = Math.floor(Math.random() * colorList.length);
   return index;
 }
 
 
-// REACT
+// REACT //
+
 /**  Main page layout Component */
 const Page = () => {
-    // useSelector HOOK
+    // useSelector
+    const prevcolor = useSelector((reduxState) => reduxState.prevcolor)
+    const color= useSelector((reduxState) => reduxState.color)
+
+    /** trigger reflow for animation reset */
+    useEffect(()=>{
+
+        let element = document.getElementById('bg-fade');
+        element.classList.remove('bg-fade');
+        void element.offsetWidth;
+        element.classList.add('bg-fade');
+    
+    },[color])
+
+
+return <>
+                <style>
+                { `
+                .bg-fade{
+                    background-color: ${prevcolor};
+                    animation: transition 1s;
+                    animation-fill-mode: forwards;
+                }
+
+                @keyframes transition {
+                    from {background-color: ${prevcolor};}
+                    to {background-color: ${color};}
+                }
+    
+                `}
+                </style>
+
+                <main id='bg-fade' className='container-fluid page-full d-flex align-items-center bg-fade'>
+                    <NavBar />
+                    <div className='container-fluid'>
+                        <QuoteBox />
+                    </div>
+                </main>
+            </>  
+}
+
+const NavBar =() => {
     const bgColor = useSelector((reduxState) => reduxState.color)
-    return  <div className='container-md page-full ' style={{backgroundColor: bgColor}}> 
-                <QuoteBox />
+    return (<>
+    <nav className="navbar navbar-expand-sm navbar-dark position-fixed fixed-top">
+        <div className="container-fluid">
+
+            <a className="navbar-brand mx-5" href="/">Front End Suites</a>
+
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul className="navbar-nav ms-auto">
+
+                    <li><a className="nav-link dropdown-item" href="/">Home</a></li>
+                    <li><a className="nav-link dropdown-item" href="/markdownpreviewer">Markdown Previewer</a></li>
+                    <li><a className="nav-link dropdown-item" href="/drummachine">Drum Machine</a></li>
+                    <li><a className="nav-link dropdown-item" href="/jscalculator">JS Calculator</a></li>
+                    <li><a className="nav-link dropdown-item" href="/clock255">Break Timer</a></li>
+
+                    <button className="info-button ms-auto col-1 mx-5">
+                        <div className="nav-link dropdown-item" href="#" role="button" data-bs-toggle="modal" data-bs-target="#infoModal" style={{color: bgColor}}>
+                        Info
+                        </div>
+                    </button>
+                </ul>
             </div>
+        </div>
+    </nav>
+
+
+    <div className="modal fade" id="infoModal" tabIndex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div className="modal-dialog">
+            <div className="modal-content">
+                <h3 className="modal-header display-6">
+                    Random Quote Generator
+                </h3>
+                <div className="modal-body pt-5 pb-5">
+                    <p className="mb-5 mx-2">{randomQuoteWriteUp}</p>
+                    <p className="text-end mt-4 mx-2">Created by Andre Tong</p>
+                </div>
+                <div className="modal-footer">
+                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </>
+    )
 }
 
 
@@ -35,13 +123,28 @@ const QuoteBox = () => {
     const [quote, setQuote] = useState('');
     const [author, setAuthor] = useState('');
 
-    const bgColor = useSelector((state)=>state.color);
-    const flip = useSelector((state)=>state.flip);
+    const prevcolor = useSelector((reduxState) => reduxState.prevcolor)
+    const color= useSelector((reduxState) => reduxState.color)
+    // const bgColor = useSelector((reduxState)=>reduxState.color);
+    const flip = useSelector((reduxState)=>reduxState.flip);
     const dispatch = useDispatch();
 
     /** update the quote on each flip change of reduxState */
     useEffect(() => {
         updateQuote()}, [flip]);//updateQuote()}, [reduxState.flip]);
+
+    /** trigger reflow for animation reset */
+    useEffect(()=>{
+
+        // trigger reflow
+        let collection = document.getElementsByClassName('text-fade');
+        for (let element of collection){
+            element.classList.remove('text-fade');
+            void element.offsetWidth;
+            element.classList.add('text-fade');
+        }
+    
+    },[color])
 
     /** update local state quote from API */
     async function updateQuote(){
@@ -75,72 +178,67 @@ const QuoteBox = () => {
     }
 
     return(
-        <section id="quote-box" style={{ backgroundColor: 'white'}}> 
-            <div className='' style={{ backgroundColor: bgColor }}>
-                <div id="text">{quote}</div>
-                <div id="author">{author}</div>
-                <footer>
-                   <a id="tweet-quote" data-size="large" href={"https://twitter.com/intent/tweet?text="+encodeURIComponent(quote)}>Tweet</a>
-                   <button id="new-quote" className='btn btn-outline-primary' onClick={()=>dispatch({ type: NEXT })}>Next Quote</button>
-                </footer>                
+        <>
+            <style>
+            { `
+            .text-fade{
+                color: ${prevcolor};
+                animation: transitiontext 1s;
+                animation-fill-mode: forwards;
+            }
 
-            </div>
-        </section>
+            @keyframes transitiontext {
+                from {color: ${prevcolor};}
+                to {color: ${color};}
+            }
+
+            `}
+            </style>
+
+            <section className='container-sm p-4 rounded d-flex justify-content-center' style={{ backgroundColor: 'white'}}>
+                <div className='col-sm-12 col-md-11 col-lg-10'>
+                    <div id="text" className='col display-2 fw-bold my-5 text-fade' >{quote}</div>
+                    <div className='lead fw-bold text-end my-5 text-fade' id="author" >{author}</div>
+                    <footer className='d-flex justify-content-end'>
+                        <button id="new-quote" className='quote-button d-flex align-items-center justify-content-center' 
+                            style={{ backgroundColor: 'white'}} onClick={()=>dispatch({ type: NEXT })}>
+                            <ArrowRightSquare className='p-0 text-fade' size={40} style={{ backgroundColor: 'white'}}/>
+                        </button>
+                    </footer>
+                </div>
+            </section>
+        </>
     )
 }
 
 
+// REDUX //
 
-
-// REDUX
 /** declare action type */
 const NEXT='NEXT';
 
-
 /** reducers */
-const nextReducer = (state={color: colorList[colorIndex()], flip:true}, action) => {
+const nextReducer = (state={prevcolor:'white', color: colorList[colorIndex()], flip:true}, action) => {
   if (action.type === NEXT){
-      return {color: colorList[colorIndex()], flip:!state.flip};
+      return {prevcolor:state.color, color: colorList[colorIndex()], flip:!state.flip};
   }
   else {
       return state
   }
 };
 
-
 /* create store */
-//const store = Redux.createStore(nextReducer);
 const store = configureStore({
   reducer: nextReducer
 })
 
-store.subscribe(() => {
-  console.log('storeState :')
-  console.log(store.getState());
-});
-
-
-//const Provider = ReactRedux.Provider;
-
 /* wrapper for Provider, Provider imported */
-class RandomQuote extends React.Component {
-  render(){
-      return (
-          <Provider store={store}>
-              <Page />
-          </Provider>
-      )}
+const RandomQuote = () => {
+    return (
+        <Provider store={store}>
+            <Page />
+        </Provider>
+    )
 }
 
 export default RandomQuote
-
-
-
-
-
-
-// https://stackoverflow.com/questions/71648776/cant-connect-redux-store-to-functional-component-screen
-// https://reactnavigation.org/docs/redux-integration/
-
-// use selector?
-// https://builtin.com/software-engineering-perspectives/useselector-usedispatch-react-redux
