@@ -25,3 +25,6 @@
     margin: 0;
 }
 
+#navbarNavDropdown{
+  z-index: 5;
+}

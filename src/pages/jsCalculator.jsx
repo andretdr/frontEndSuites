@@ -1,5 +1,5 @@
 import { useState, useReducer, useEffect } from 'react'
-import buttons from './jsCalculatorInit.js'
+import buttons from '../data/jsCalculatorInit.js'
 
 
 const Display = (props) =>{

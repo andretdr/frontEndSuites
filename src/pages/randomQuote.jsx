@@ -6,11 +6,11 @@ import React, { useEffect, useState } from 'react'
 import { Provider } from 'react-redux'
 import colorList from '../assets/colors'
 import { configureStore } from '@reduxjs/toolkit'
-import './randomQuote.css'
+import '../assets/css/randomQuote.css'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { ArrowRightSquare } from 'react-bootstrap-icons'
-import { randomQuoteWriteUp } from '../assets/writeup'
+import { randomQuoteWriteUp } from '../data/writeup'
 
 //  CONSTANTS //
 
@@ -69,7 +69,7 @@ return <>
 const NavBar =() => {
     const bgColor = useSelector((reduxState) => reduxState.color)
     return (<>
-    <nav className="navbar navbar-expand-sm navbar-dark position-fixed fixed-top">
+    <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
         <div className="container-fluid">
 
             <a className="navbar-brand mx-5" href="/">Front End Suites</a>
@@ -77,7 +77,7 @@ const NavBar =() => {
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
-            <div className="collapse navbar-collapse" id="navbarNavDropdown">
+            <div className="collapse navbar-collapse" id="navbarNavDropdown" style={{backgroundColor: bgColor}}>
                 <ul className="navbar-nav ms-auto">
 
                     <li><a className="nav-link dropdown-item" href="/">Home</a></li>
@@ -85,8 +85,9 @@ const NavBar =() => {
                     <li><a className="nav-link dropdown-item" href="/drummachine">Drum Machine</a></li>
                     <li><a className="nav-link dropdown-item" href="/jscalculator">JS Calculator</a></li>
                     <li><a className="nav-link dropdown-item" href="/clock255">Break Timer</a></li>
+                    <li><div className="nav-link dropdown-item d-block d-lg-none" href="#" data-bs-toggle="modal" data-bs-target="#infoModal">Info</div></li>
 
-                    <button className="info-button ms-auto col-1 mx-5">
+                    <button className="info-button ms-auto col-1 mx-5 d-none d-lg-block">
                         <div className="nav-link dropdown-item" href="#" role="button" data-bs-toggle="modal" data-bs-target="#infoModal" style={{color: bgColor}}>
                         Info
                         </div>
