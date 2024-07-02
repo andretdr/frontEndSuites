@@ -24,35 +24,35 @@ const HeightContext = createContext();
 const NavBar = () => {
 
     return (
-    <nav class="navbar navbar-dark bg-secondary">
-    <div class="container-fluid">
-        <a class="navbar-brand text-white" href="/">Front End Suites</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+    <nav className="navbar navbar-dark bg-secondary">
+    <div className="container-fluid">
+        <a className="navbar-brand text-white" href="/">Front End Suites</a>
+        <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Mark Down Previewer</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div className="offcanvas-header">
+            <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Mark Down Previewer</h5>
+            <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
 
-        <div class="offcanvas-body">
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="nav-item">
-                    <a class="nav-link text-dark" aria-current="page" href="/">Home</a>
+        <div className="offcanvas-body">
+            <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li className="nav-item">
+                    <a className="nav-link text-dark" aria-current="page" href="/">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" aria-current="page" href="/randomquote">Random Quote Generator</a>
+                <li className="nav-item">
+                    <a className="nav-link text-dark" aria-current="page" href="/randomquote">Random Quote Generator</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" aria-current="page" href="/drummachine">Drum Machine</a>
+                <li className="nav-item">
+                    <a className="nav-link text-dark" aria-current="page" href="/drummachine">Drum Machine</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" aria-current="page" href="/jscalculator">JS Calculator</a>
+                <li className="nav-item">
+                    <a className="nav-link text-dark" aria-current="page" href="/jscalculator">JS Calculator</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" aria-current="page" href="/clock255">Break Timer</a>
+                <li className="nav-item">
+                    <a className="nav-link text-dark" aria-current="page" href="/clock255">Break Timer</a>
                 </li>
             </ul>
 

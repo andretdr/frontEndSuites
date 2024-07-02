@@ -67,7 +67,21 @@ return <>
 }
 
 const NavBar =() => {
-    const bgColor = useSelector((reduxState) => reduxState.color)
+    const prevcolor = useSelector((reduxState) => reduxState.prevcolor)
+    const color= useSelector((reduxState) => reduxState.color)
+
+    /** trigger reflow for animation reset */
+    useEffect(()=>{
+
+        let collection = document.getElementsByClassName('bg-fade');
+        for (let element of collection){
+            element.classList.remove('bg-fade');
+            void element.offsetWidth;
+            element.classList.add('bg-fade');
+        }
+    
+    },[color])
+
     return (<>
     <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
         <div className="container-fluid">
@@ -77,7 +91,7 @@ const NavBar =() => {
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
-            <div className="collapse navbar-collapse" id="navbarNavDropdown" style={{backgroundColor: bgColor}}>
+            <div className="collapse navbar-collapse bg-fade" id="navbarNavDropdown">
                 <ul className="navbar-nav ms-auto">
 
                     <li><a className="nav-link dropdown-item" href="/">Home</a></li>
@@ -88,7 +102,7 @@ const NavBar =() => {
                     <li><div className="nav-link dropdown-item d-block d-lg-none" href="#" data-bs-toggle="modal" data-bs-target="#infoModal">Info</div></li>
 
                     <button className="info-button ms-auto col-1 mx-5 d-none d-lg-block">
-                        <div className="nav-link dropdown-item" href="#" role="button" data-bs-toggle="modal" data-bs-target="#infoModal" style={{color: bgColor}}>
+                        <div className="nav-link dropdown-item bg-fade" href="#" role="button" data-bs-toggle="modal" data-bs-target="#infoModal">
                         Info
                         </div>
                     </button>

@@ -1,0 +1,76 @@
+.grid{
+    display: grid;
+    grid-template-columns:  120px 120px 120px;
+    grid-template-rows: 120px 120px 120px;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (min-width: 1200px) {
+    /** large screens **/
+    .grid{
+        grid-template-columns: 150px 150px 150px;
+        grid-template-rows: 150px 150px 150px;
+    }
+}
+
+#gridq{
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+
+#gridw{
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+
+#gride{
+    grid-column: 3/4;
+    grid-row: 1/2;
+}
+
+#gridf{
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+
+#gridg{
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+
+#gridh{
+    grid-column: 3/4;
+    grid-row: 2/3;
+}
+
+/** individual buttons */
+.drum-pad{
+    height: 100px;
+    width: 100px;
+}
+
+@media only screen and (min-width: 1200px) {
+    /** individual buttons */
+    .drum-pad{
+        height: 120px;
+        width: 120px;
+    }
+}
+
+.checkbox-1x {
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+}
+.checkbox-2x {
+    transform: scale(2);
+    -webkit-transform: scale(2);
+}
+
+#volume{
+    width: 400px;
+}
+
+#display{
+    height: 50px
+}

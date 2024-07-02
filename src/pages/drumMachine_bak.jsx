@@ -1,32 +1,76 @@
 import React, { useReducer } from 'react'
 import { useState, useEffect } from 'react'
-import { displayMapping, audioMapping } from './drumMachineInit';
 
+import soundq from '../assets/tracks/Heater-1.mp3'
+import soundw from '../assets/tracks/Heater-2.mp3'
+import sounde from '../assets/tracks/Heater-3.mp3'
+import sounda from '../assets/tracks/Heater-4.mp3'
+import sounds from '../assets/tracks/Clap.mp3'
+import soundd from '../assets/tracks/Open-HH.mp3'
+import soundz from '../assets/tracks/Kick_n_Hat.mp3'
+import soundx from '../assets/tracks/Kick.mp3'
+import soundc from '../assets/tracks/Closed-HH.mp3'
+
+const displayMapping = [{
+    'Q': 'Heater 1',
+    'W': 'Heater 2',
+    'E': 'Heater 3',
+    'A': 'Heater 4',
+    'S': 'Clap',
+    'D': 'Open HH',
+    'Z': 'Kick n Hat',
+    'X': 'Kick',
+    'C': 'Closed HH'
+}]
+
+
+function playsound(id){
+    document.getElementById(id)
+    .play()
+
+}
 
 const KeyPad = (props) => {
-    const letterArr = ['q','w','e','a','s','d','z','x','c'];
-    const html = letterArr.map(item=>
-        <div className='col-2'><button onClick={()=>props.dispatch({type:item})} className='btn btn-lg btn-secondary drum-pad'
-            id={'sound'+'item'}>{item.toUpperCase()}</button></div>);
+    const letterArr = ['Q','W','E','A','S','D','Z','X','C'];
+    const letterMapping = {
+        'Q': soundq,
+        'W': soundw,
+        'E': sounde,
+        'A': sounda,
+        'S': sounds,
+        'D': soundd,
+        'Z': soundz,
+        'X': soundx,
+        'C': soundc
+        };
+
+    const handleClick = (item) => {
+        props.dispatch({type:item})
+        playsound(item.toUpperCase())
+    }
+
+    
     return (
             <div className='col-6'>
-                <div className='row g-2 justify-content-center align-items-center'>
-                    {html[0]}
-                    {html[1]}
-                    {html[2]}
-                </div>
-                <div className='row g-2 justify-content-center align-items-center'>
-                    {html[3]}
-                    {html[4]}
-                    {html[5]}
-                </div>
-                <div className='row g-2 justify-content-center align-items-center'>
-                    {html[6]}
-                    {html[7]}
-                    {html[8]}
-                </div>
+                {letterArr.map(item=> 
+                    <div className='col-2' key={item+'key'}>
+                        <button onClick={()=>handleClick(item)} 
+                            className='btn btn-lg btn-secondary drum-pad' 
+                            id={'sound'+'item'}>
+                            
+                            <audio src={letterMapping[item.toUpperCase()]} 
+                                className='clip' 
+                                id={item}>
+                            </audio>
+                            {item.toUpperCase()}
+                        </button></div>)}
             </div>
 )}
+
+
+
+
+
 
 
 const ControlPad = (props) => {
@@ -49,7 +93,7 @@ const ControlPad = (props) => {
 
             <div className='col h-25'>
                 <h3 id='display' className='display-2a'>
-                    { ((props.keyPress.search(/[qweasdzxc]/) != -1) && props.power.power) 
+                    { ((props.keyPress.search(/\b[QWEASDZXC]\b/) != -1) && props.power.power) 
                         ? displayMapping[0][[props.keyPress]]
                         : ' ' }
                 </h3>                
@@ -85,7 +129,7 @@ const DrumMachine = () => {
 
     /** reducer for non simple action reducing */
     const reducer = (state, action) => {
-        const pattern = /\b[qweasdzxc]\b/i;
+        const pattern = /\b[QWEASDZXC]\b/i;
         if (pattern.test(action.type))
             return ({key: action.type, toggle: !state.toggle});   
         else 
@@ -96,13 +140,19 @@ const DrumMachine = () => {
     const[keyPress, dispatch] = useReducer(reducer, {key:'', toggle: false});
 
     /** updates keypress state */
-    const handleKeyPress=(event)=>{ dispatch({type: (event.key).toLowerCase()});}
+    const handleKeyPress=(event)=>{ 
+        
+        dispatch({type: (event.key.toUpperCase())});
+        playsound(event.key.toUpperCase());
+    }
 
     /**  will do this on mount only 
      *   handle keydown logic and dispatch */
     useEffect(()=>{
         // listen for keydown
         document.addEventListener('keydown', handleKeyPress);
+        
+        
         // cleanup function on dismount
         return ()=>{ document.removeEventListener('keydown', handleKeyPress);} 
     }, []);
@@ -110,9 +160,9 @@ const DrumMachine = () => {
     /* listening to keypress state, if changes, play sound*/
     useEffect(()=>{
         if ((keyPress.key !='') && power) {
-            let audio = new Audio(audioMapping[keyPress.key])
-            audio.volume = volume/10;
-            audio.play();
+
+            playsound(keyPress.key.toUpperCase());
+            
         }
     }, [keyPress])
 
