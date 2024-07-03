@@ -1,9 +1,21 @@
+
 .grid{
     display: grid;
-    grid-template-columns:  120px 120px 120px;
-    grid-template-rows: 120px 120px 120px;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px;
     justify-content: center;
     align-items: center;
+}
+
+
+@media only screen and (min-width: 540px) {
+    /** small screens **/
+    .grid{
+
+        grid-template-columns:  120px 120px 120px;
+        grid-template-rows: 120px 120px 120px;
+
+    }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -44,10 +56,20 @@
     grid-row: 2/3;
 }
 
-/** individual buttons */
+
+/** small screens **/
 .drum-pad{
-    height: 100px;
-    width: 100px;
+    height: 90px;
+    width: 90px;
+}
+
+
+@media only screen and (min-width: 540px) {
+/** individual buttons */
+    .drum-pad{
+        height: 100px;
+        width: 100px;
+    }
 }
 
 @media only screen and (min-width: 1200px) {

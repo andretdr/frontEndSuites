@@ -14,8 +14,8 @@ const WriteUp = () => {
     return (
 
         <div className='container-lg'>
-            <p className='text-center'>{drumMachineWriteUp}</p>
-            <p className='text-end'>It is created by Andre Tong</p>
+            <p className='text-justify m-5'>{drumMachineWriteUp}</p>
+            <p className='text-end m-5'>It is created by Andre Tong</p>
         </div> 
 
             )
@@ -24,7 +24,7 @@ const WriteUp = () => {
 
 /** Drum Machine Image */
 const Image = () => {
-    return  <img src={drumMachine} alt="Drum Machine" width="1400" height="800" class="d-inline-block"></img>
+    return  <img key='drum-machine' src={drumMachine} alt="Drum Machine" width="1400" height="800" className="d-inline-block"></img>
 }
 
 
@@ -33,8 +33,8 @@ const History = () => {
     return  (
         <div className='container-lg'>
             <h6 className='display-6 text-center m-5'>Drum Machine</h6>
-            {drumMachineHistory.map((item)=>{
-                return <p className='text-justify m-5'>{item}</p>
+            {drumMachineHistory.map((item, key)=>{
+                return <p key={key} className='text-justify m-5'>{item}</p>
             })}
             
         </div> 
@@ -46,36 +46,36 @@ const History = () => {
 const NavBar = () => {
 
     return (
-        <nav class="navbar-light navbar-expand-lg bg-light">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+        <nav className="navbar-light navbar-expand-lg bg-light py-2">
+            <div className="container-fluid">
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                    <a class="navbar-brand mx-5 d-none d-lg-block" href="#drum-machine">
-                    <img src={drumSVG} alt="Logo" width="40" height="41" class="d-inline-block align-text-top"></img>
+                <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+                    <a className="navbar-brand mx-5 d-none d-lg-block" href="#drum-machine">
+                    <img src={drumSVG} alt="Logo" width="40" height="41" className="d-inline-block align-text-top"></img>
                    
                     </a>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li className="nav-item">
+                    <a className="nav-link" href="/">Home</a>
                     </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="/randomquote">Random Quote Generator</a>
+                    <li className="nav-item">
+                    <a className="nav-link" href="/randomquote">Random Quote Generator</a>
                     </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="/markdownpreviewer">Mark Down Previewer</a>
+                    <li className="nav-item">
+                    <a className="nav-link" href="/markdownpreviewer">Mark Down Previewer</a>
                     </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="/jscalculator">JS Calculator</a>
+                    <li className="nav-item">
+                    <a className="nav-link" href="/jscalculator">JS Calculator</a>
                     </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="clock255">Break Timer</a>
+                    <li className="nav-item">
+                    <a className="nav-link" href="clock255">Break Timer</a>
                     </li>
                 </ul>
 
                 <div className='mx-5'>
-                    <a class="nav-link text-dark  d-none d-lg-block" href="/">Front End Suites</a>
+                    <a className="nav-link text-dark  d-none d-lg-block" href="/">Front End Suites</a>
                     
                 </div>
 
@@ -93,7 +93,7 @@ const KeyPad = (props) => {
     return (<>
                 <div className='grid'>
                     {letterArr.map(item=>
-                    <div id={'grid'+item}>
+                    <div key={'grid'+item} id={'grid'+item} className='d-flex justify-content-center align-items-center'>
                         <button onClick={()=>props.dispatch({type:item})} 
                         className='btn btn-lg btn-secondary drum-pad' id={'sound'+item}>
                             {item.toUpperCase()}
@@ -116,7 +116,7 @@ const ControlPad = (props) => {
     const handleChangeVolume = (event) => {props.volume.set(event.target.value)}
 
     return (
-        <div className='card bg-light mt-5 h-75 w-75 d-flex flex-column justify-content-start'>
+        <div className='card bg-light my-3 h-75 w-75 d-flex flex-column justify-content-start'>
             <div className='my-2 ms-auto mx-4'>
                 <div className="form-check form-switch">
                     <label className="form-check-label" htmlFor="flexSwitchCheckChecked"></label>
@@ -127,13 +127,15 @@ const ControlPad = (props) => {
 
             <div id='display' className='card p-2 mx-5 my-4 bg-light '>
                 <h3 className='lead text-center'>
-                    { ((props.keyPress.search(/[qweasdzxc]/) != -1) && props.power.power) 
+                    { (props.keyPress === '')
+                        ? 'Press key to start'
+                        : ((props.keyPress.search(/[qweasdzxc]/) != -1) && props.power.power) 
                         ? displayMapping[0][[props.keyPress]]
                         : ' ' }
                 </h3>                
             </div>
 
-            <div className='d-flex flex-row justify-content-start align-items-center mx-4'>
+            <div className='d-flex flex-row justify-content-start align-items-center mx-4 mb-5'>
                 <VolumeUpFill />
                 {props.power.power
                 ? <input id='volume' onChange={handleChangeVolume} type='range' min='0' max='10' value={props.volume.volume} step='0.1'/>
@@ -204,18 +206,18 @@ const DrumMachine = () => {
                 <Image />
             </section>
 
-            <section id='history' className='bg-light py-5'>
+            <section id='history' className='bg-light py-1 py-lg-5'>
                 <History />
             </section>
 
             <section  id='drum-machine' className='container-xl py-5'>
-                <div className='row'>
-                    <div className='col-12 col-md-8 col-lg-6'>
-                        <KeyPad dispatch={dispatch}/>
-                    </div>
-                    <div className='col-12 col-md-4 col-lg-6'>
+                <div className='d-flex flex-column flex-md-row justify-content-center'>
+                    <div className='d-flex flex-row justify-content-center'>
                         <ControlPad keyPress={keyPress.key} power={{power:power, set:setPower}} 
                         bank={{bank:bank, set:setBank}} volume={{volume: volume, set:setVolume}}/>
+                    </div>
+                    <div className=''>
+                        <KeyPad dispatch={dispatch}/>
                     </div>
                 </div>
             </section>
