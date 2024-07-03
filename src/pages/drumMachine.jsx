@@ -1,3 +1,7 @@
+/** 
+ * THIS PROJECT USES REACT, BOOTSTRAP and CSS
+*/
+
 import React, { useReducer } from 'react'
 import { useState, useEffect } from 'react'
 import { displayMapping, audioMapping } from '../data/drumMachineInit';
@@ -67,10 +71,13 @@ const NavBar = () => {
                     <a className="nav-link" href="/markdownpreviewer">Mark Down Previewer</a>
                     </li>
                     <li className="nav-item">
+                    <a className="nav-link" href="/drummachine">Drum Machine</a>
+                    </li>
+                    <li className="nav-item">
                     <a className="nav-link" href="/jscalculator">JS Calculator</a>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link" href="clock255">Break Timer</a>
+                    <a className="nav-link" href="/clock255">Interval Timer</a>
                     </li>
                 </ul>
 

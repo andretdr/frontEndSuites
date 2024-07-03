@@ -1,4 +1,4 @@
-/** It is developed using React, Bootstrap and CSS. 
+/** This project is developed using React, Bootstrap and CSS. 
     It calculates the result in two steps, firstly by converting the input infix expression 
     into a postfix expression using a stack,
     and then evaluating the postfix expression again using a stack.
@@ -42,7 +42,10 @@ const NavBar = () =>{
                             <a className="nav-link" href="/drummachine">Drum Machine</a>
                         </li>
                         <li className="nav-item ms-auto me-auto">
-                            <a className="nav-link" href="/clock255">Break Timer</a>
+                            <a className="nav-link" href="/jscalculator">Calculator</a>
+                        </li>
+                        <li className="nav-item ms-auto me-auto">
+                            <a className="nav-link" href="/clock255">Interval Timer</a>
                         </li>
                     </ul>
 

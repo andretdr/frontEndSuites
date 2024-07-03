@@ -4,7 +4,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { Provider } from 'react-redux'
-import colorList from '../assets/colors'
+import colorList from '../data/colors'
 import { configureStore } from '@reduxjs/toolkit'
 import '../assets/css/randomQuote.css'
 import { useSelector } from 'react-redux'
@@ -95,10 +95,11 @@ const NavBar =() => {
                 <ul className="navbar-nav ms-auto">
 
                     <li><a className="nav-link dropdown-item" href="/">Home</a></li>
+                    <li><a className="nav-link dropdown-item" href="/randomquote">Random Quote Generator</a></li>
                     <li><a className="nav-link dropdown-item" href="/markdownpreviewer">Markdown Previewer</a></li>
                     <li><a className="nav-link dropdown-item" href="/drummachine">Drum Machine</a></li>
                     <li><a className="nav-link dropdown-item" href="/jscalculator">JS Calculator</a></li>
-                    <li><a className="nav-link dropdown-item" href="/clock255">Break Timer</a></li>
+                    <li><a className="nav-link dropdown-item" href="/clock255">Interval Timer</a></li>
                     <li><div className="nav-link dropdown-item d-block d-lg-none" href="#" data-bs-toggle="modal" data-bs-target="#infoModal">Info</div></li>
 
                     <button className="info-button ms-auto col-1 mx-5 d-none d-lg-block">

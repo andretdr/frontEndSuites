@@ -21,7 +21,7 @@ jsCalculatorWriteUp[1] = `
 ;
 
 const clock255WriteUp = `
-    Break Timer is a Front End Project based on the FCC challenge. It is developed using React, Bootstrap and CSS. It is currently deployed on Vercel.
+    Interval Timer is a Front End Project based on the FCC challenge. It is developed using React, Bootstrap and CSS. It is currently deployed on Vercel.
 `;
 
 export {randomQuoteWriteUp, markDownWriteUp, drumMachineWriteUp, jsCalculatorWriteUp, clock255WriteUp}

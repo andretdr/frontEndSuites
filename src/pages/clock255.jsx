@@ -1,10 +1,82 @@
+/** 
+ *  THIS PROJECT USES REACT, BOOTSTRAP and CSS
+
+    https://www.pexels.com/photo/scenic-view-of-mountains-during-dawn-1261728/
+*/
+
 import React, { useEffect } from "react"
 import {useState} from 'react'
+import { ThreeDotsVertical } from 'react-bootstrap-icons'
+import { CaretUpFill } from 'react-bootstrap-icons'
+import { CaretDownFill } from 'react-bootstrap-icons'
+import { PlayCircle } from 'react-bootstrap-icons'
+import { PauseCircle } from 'react-bootstrap-icons'
+import { ArrowRepeat } from 'react-bootstrap-icons'
+import {  } from 'react-bootstrap-icons'
+import { clock255WriteUp } from '../data/writeup.js'
+import '../assets/css/clock255.css'
 
 import alertSound from '../assets/tracks/alert.wav'
 
+/** default reset values */
 const RESET = {break: 5, session: 25, current: {time: '25.00', session: true}, cont: false, play: false};
 
+
+const NavBar = () => {
+    return (
+        <nav className="container-xl py-3">
+            <a class="text-dark" data-bs-toggle="offcanvas" href="#offcanvas" role="button" aria-controls="offcanvasExample">
+            <ThreeDotsVertical size={20}/>
+            </a>
+
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Interval Timer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div>
+                    <div>
+                    {clock255WriteUp}
+                    </div>
+                    <p className="text-end">
+                        It is created by Andre Tong
+                    </p>
+                </div>
+                <ul className="navbar-nav justify-content-end flex-grow-1 pe-3 mt-5">
+                    <li className="nav-item">
+                        <a className="nav-link text-dark" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link text-dark" aria-current="page" href="/randomquote">Random Quote Generator</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link text-dark" aria-current="page" href="/markdownpreviewer">Mark Down Previewer</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link text-dark" aria-current="page" href="/drummachine">Drum Machine</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link text-dark" aria-current="page" href="/jscalculator">JS Calculator</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link text-dark" aria-current="page" href="/clock255">Interval Timer</a>
+                    </li>
+                </ul>
+
+
+
+
+
+            </div>
+            </div>
+        </nav>
+    )
+}
+
+
+
+/** Break component */
 const BreakComponent = props =>{
     
     const handleBreak = amt =>{
@@ -16,27 +88,30 @@ const BreakComponent = props =>{
         }
 
     return (
-        <div id='break'>
+        <div id='break' class='break'>
             <h3 className="display-3">
                 
             </h3>
-            <button id="break-increment" onClick={()=>handleBreak(1)} className="btn btn-primary timer-btns">
-                UP
+            <button id="break-increment" onClick={()=>handleBreak(1)} className="break-increment break__flex-center">
+                <CaretUpFill size={25}/>
             </button>
-            <h5 id='break-label'>
+            <button id="break-decrement" onClick={()=>handleBreak(-1)} className="break-decrement break__flex-center">
+                <CaretDownFill size={25}/>
+            </button>
+
+            <small id='break-label' className="break-label break__flex-center text-center">
                 Break Length
-            </h5>
-            <div id="break-length">
+            </small>
+            <div id="break-length" className="break-length break__flex-center display-6 text-center">
                 {props.breaktime}
             </div>
-            <button id="break-decrement" onClick={()=>handleBreak(-1)} className="btn btn-primary timer-btns">
-                DOWN
-            </button>
+
 
         </div>
         )
 }
 
+/** Session component */
 const SessionComponent = props =>{
 
     const handleSession = amt =>{
@@ -48,39 +123,40 @@ const SessionComponent = props =>{
         }
 
     return (
-        <div id='session'>
-            <h3 className="display-3">
-                
-            </h3>
-            <button id="session-increment" onClick={()=>handleSession(1)} className="btn btn-primary timer-btns">
-                UP
+        <div id='session' className="session">
+            
+            <button id="session-increment" onClick={()=>handleSession(1)} className="session-increment session__flex-center">
+               <CaretUpFill size={25}/>
             </button>
-            <h5 id="session-label">
+            <button id="session-decrement" onClick={()=>handleSession(-1)} className="session-decrement session__flex-center">
+                <CaretDownFill size={25}/>
+            </button>
+
+            <small id="session-label" className="session-label session__flex-center text-center">
                 Session Length
-            </h5>
-            <div id="session-length">
+            </small>
+
+            <div id="session-length" className="session-length session__flex-center display-6 text-center">
                 {props.session}
             </div>
-            <button id="session-decrement" onClick={()=>handleSession(-1)} className="btn btn-primary timer-btns">
-                DOWN
-            </button>
+
 
         </div>
         )
 
 }
 
+
+/** Display component */
 const DisplayComponent = props =>{
-
-
     return (
-        <div id='display'>
+        <div className="display d-flex justify-content-center align-items-center">
             <div>
                 {props.current.session
-                 ? <h6 id='timer-label'>Session</h6>
-                 : <h6 id='timer-label'>Break</h6>
+                 ? <h6 id='timer-label' className="display-6 text-center">Session</h6>
+                 : <h6 id='timer-label' className="display-6 text-center">Break</h6>
                 }
-                <div id='time-left'>
+                <div id='time-left' className="display-1">
                     {props.current.time}
                 </div>
             </div>
@@ -88,15 +164,16 @@ const DisplayComponent = props =>{
     )
 }
 
-const ControlComponent = props =>{
 
+/** Contols Component */
+const ControlComponent = props =>{
     return (
-        <div id='control'>
+        <div id='control' className="controls d-flex flex-row justify-content-center align-items-end">
             {   props.play
-                ? <button id='start_stop' onClick={props.handlePause} className="btn btn-primary">pause</button>
-                : <button id='start_stop' onClick={props.handlePlay} className="btn btn-primary">play</button>
+                ? <button id='start_stop' onClick={props.handlePause} className="mx-2 text-center"><PauseCircle size={40}/></button>
+                : <button id='start_stop' onClick={props.handlePlay} className="mx-2 text-center"><PlayCircle size={40}/></button>
             }
-            <button id='reset' onClick={props.handleReset} className="btn btn-primary">reset</button>
+            <button id='reset' onClick={props.handleReset} className="mx-2"><ArrowRepeat size={40}/></button>
         </div>
     )
 
@@ -104,6 +181,8 @@ const ControlComponent = props =>{
 
 let intervalHandle;
 
+
+/* Main parent component, handles the logic */
 const Clock255 = _ =>{
 
     const [breaktime, setBreak] = useState(RESET.break);
@@ -153,8 +232,6 @@ const Clock255 = _ =>{
         let collection = document.getElementsByClassName('timer-btns');
         for (let el of collection)
             el.classList.remove("link__disable");
-        
-
     }
 
     const handleReset = () =>{
@@ -188,10 +265,6 @@ const Clock255 = _ =>{
         }
     }
 
-    useEffect(()=>{
-//        console.log(current);
-    }, [current]);
-
     /** on Mount, do */
     useEffect(()=>{
         let timeleft_ms = minAndSecToMs(current.time);
@@ -223,13 +296,17 @@ const Clock255 = _ =>{
     },[play]);
 
         return (
-            <section id='clock255'>
-                <audio id='beep' src={alertSound}></audio>
-                <BreakComponent breaktime={breaktime} setBreak={setBreak} currUpdate={currUpdate}/>
-                <SessionComponent session={session} setSession={setSession} currUpdate={currUpdate}/>
-                <DisplayComponent current={current} />
-                <ControlComponent play={play} handlePlay={handlePlay} handlePause={handlePause} handleReset={handleReset}/>
-            </section>
+            <main id='clock255' className="bg-light page-full">
+                <div className="container-xl page-full clock-container">
+                    <audio id='beep' src={alertSound}></audio>
+
+                    <NavBar />
+                    <BreakComponent breaktime={breaktime} setBreak={setBreak} currUpdate={currUpdate}/>
+                    <SessionComponent session={session} setSession={setSession} currUpdate={currUpdate}/>
+                    <DisplayComponent current={current} />
+                    <ControlComponent play={play} handlePlay={handlePlay} handlePause={handlePause} handleReset={handleReset}/>
+                </div>
+            </main>
         )
     }
 

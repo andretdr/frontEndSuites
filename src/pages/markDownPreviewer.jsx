@@ -40,19 +40,22 @@ const NavBar = () => {
         <div className="offcanvas-body">
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li className="nav-item">
-                    <a className="nav-link text-dark" aria-current="page" href="/">Home</a>
+                    <a className="nav-link text-dark" href="/">Home</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link text-dark" aria-current="page" href="/randomquote">Random Quote Generator</a>
+                    <a className="nav-link text-dark" href="/randomquote">Random Quote Generator</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link text-dark" aria-current="page" href="/drummachine">Drum Machine</a>
+                    <a className="nav-link text-dark" aria-current="page" href="/markdownpreviewer">Mark Down Previewer</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link text-dark" aria-current="page" href="/jscalculator">JS Calculator</a>
+                    <a className="nav-link text-dark" href="/drummachine">Drum Machine</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link text-dark" aria-current="page" href="/clock255">Break Timer</a>
+                    <a className="nav-link text-dark" href="/jscalculator">JS Calculator</a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link text-dark" href="/clock255">Interval Timer</a>
                 </li>
             </ul>
 
