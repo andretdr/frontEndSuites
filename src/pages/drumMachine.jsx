@@ -142,15 +142,6 @@ const ControlPad = (props) => {
                 : <input id='volume' type='range' min='0' max='10' disabled/>}
             </div>
 
-            {/* <div className='col'>
-                <div className="form-check form-switch">
-                    <label className="form-check-label" htmlFor="flexSwitchCheckChecked">Bank</label>
-                    {props.power.power
-                    ? <input className="form-check-input" onChange={handleChangeBank} type="checkbox" role="switch" id="flexSwitchCheckChecked"/>
-                    : <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" disabled/>}
-                </div>
-            </div> */}
-
         </div>
     )
 }

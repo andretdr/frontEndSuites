@@ -1,37 +1,146 @@
+/** It is developed using React, Bootstrap and CSS. 
+    It calculates the result in two steps, firstly by converting the input infix expression 
+    into a postfix expression using a stack,
+    and then evaluating the postfix expression again using a stack.
+    
+     convert infix expression to a postfix expression
+     https://www.youtube.com/watch?v=kKSENzdu7bE
+     https://www.youtube.com/watch?v=UKuIw8cKKsc
+*/
+
+
 import { useState, useReducer, useEffect } from 'react'
 import buttons from '../data/jsCalculatorInit.js'
+import '../assets/css/calculator.css'
+import { List } from 'react-bootstrap-icons'
+import { jsCalculatorWriteUp } from '../data/writeup.js'
 
 
-const Display = (props) =>{
-    useEffect(()=>{
-        console.log(props.state.formulaArr);
-    },[props.state.formulaArr])
+/** NavBar */
+const NavBar = () =>{
+    return ( 
 
-    return (
-        <div className='card w-50 h-25'>
-            <h3 id='display' className='display-3'>{props.state.currStr}</h3>
-            
-            <h3 className='display-3'>formula</h3>
-            {props.state.formulaStr}
-        </div>
+    <div className="container-xl bg-primary">
+        <nav className="navbar navbar-expand-md navbar-dark">
+            <div className="container-xl">
+                <a className="navbar-brand me-auto" href="/">Front End Suites</a>
+                <button className="navbar-toggler border-0 ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <List />
+                </button>
+                <div className="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                    <ul className="navbar-nav">
+                        <li className="nav-item ms-auto me-auto">
+                            <a className="nav-link" href="/">Home</a>
+                        </li>
+                        <li className="nav-item ms-auto me-auto">
+                            <a className="nav-link" href="/randomquote">Random Quote</a>
+                        </li>
+                        <li className="nav-item ms-auto me-auto">
+                            <a className="nav-link" href="/markdownpreviewer">Mark Down Previewer</a>
+                        </li>
+                        <li className="nav-item ms-auto me-auto">
+                            <a className="nav-link" href="/drummachine">Drum Machine</a>
+                        </li>
+                        <li className="nav-item ms-auto me-auto">
+                            <a className="nav-link" href="/clock255">Break Timer</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </div>
     )
 }
 
-const Buttons = (props) =>{
+
+/** Header */
+const Header = () =>{
+    return (
+        <section className=''>
+            <h1 className='display-1'>Calculator</h1>
+        </section>
+    )
+}
+
+
+/** Display component */
+const Display = (props) =>{
+    useEffect(()=>{
+    },[props.state.formulaArr])
 
     return (
-        <div>
-            {buttons.map(item=>
-                <div key={item.id}>
-                    <button className='btn btn-secondary btn-lg' id={item.id} onClick={()=>props.dispatch({type: item.actiontype, op: item.actionop})}>
-                        {item.label}
-                    </button>
-                </div>
-            )}
-        </div>
+        <section className='container-lg bg-light'>
+            <div id='display' className='d-flex flex-column justify-content-center align-items-center'>
+                <span className='lead mb-0 mb-md-5 me-auto mx-5' style={{height: '30px'}}>{props.state.formulaStr}</span>
+                <h3 className='display-1'>{props.state.currStr}</h3>
+            </div>
+        </section>
+    )
+}
+
+
+/** Buttons Component */
+const Buttons = (props) =>{
+    return (
+
+        <section className='button-grid '>
+                {buttons.map(item=>
+                    <div key={item.id} id={item.id}>
+                        {item.actionop === 'OPERAND'
+                            ? <button className='btn btn-secondary btn-lg' onClick={()=>props.dispatch({type: item.actiontype, op: item.actionop})}>{item.label}</button>
+                            : <button className='btn btn-primary btn-lg' onClick={()=>props.dispatch({type: item.actiontype, op: item.actionop})}>{item.label}</button>
+                        }
+                    </div>
+                )}
+
+        </section>
         )
 }
 
+
+/** WriteUp Component */
+const WriteUp = () =>{
+    return (
+        <section className='w-50 d-none d-md-block'>
+            <h1 className='mb-4'>JS Calculator</h1>
+            <p className='text-justify'>{jsCalculatorWriteUp[0]}</p>
+            <p className='text-justify'>{jsCalculatorWriteUp[1]}</p>
+            <p className='text-justify'>{jsCalculatorWriteUp[2]}</p>
+            <p className='text-start'>It is created by Andre Tong</p>
+        </section>
+    )}
+
+
+/** Endbit Component */
+const EndWriteUp = () =>{
+    return (
+        <section className='container-lg bg-light pb-5 d-block d-md-none'>
+            <h1 className='pt-5 pb-3 text-center'>JS Calculator</h1>
+            <p className='text-center text-wrap'>{jsCalculatorWriteUp[0]}</p>
+            <p className='text-center text-wrap'>{jsCalculatorWriteUp[1]}</p>
+            <p className='text-center text-wrap'>{jsCalculatorWriteUp[2]}</p>
+            <p className='text-center'>It is created by Andre Tong</p>
+        </section>
+    )}
+
+
+/** Calculator container for formatting */
+const CalculatorContainer = (props) =>{
+    return (<>
+            
+            <Display state={props.state}/>
+            <div className='container-lg'>
+                <div className='d-flex flex-column flex-md-row justify-content-evenly align-items-center align-items-md-start py-5'>
+                    <Buttons dispatch={props.dispatch}/>
+                    <WriteUp />
+                </div>
+            </div>
+            </>
+    )
+}
+
+/** Main parent component */
 const JsCalculator = () =>{
 
     const[repeatDec, setRepeatDec] = useState(false);
@@ -50,6 +159,7 @@ const JsCalculator = () =>{
     };
 
     const operandReturn = (operand, state) =>{
+
         // reset repeatDec
         if (state.reset)
             setRepeatDec(false);
@@ -64,17 +174,22 @@ const JsCalculator = () =>{
                 return {currStr: state.currStr, formulaArr: state.formulaArr, formulaStr: state.formulaStr, reset: false};
 
         return (
-        state.reset
+        !state.reset
+        ? {currStr: state.currStr.concat(operand), formulaArr: state.formulaArr, formulaStr: state.formulaStr.concat(operand), reset: false}
+        : (state.formulaStr.length === 0)
         ? {currStr: operand, formulaArr: state.formulaArr, formulaStr: state.formulaStr.concat(operand), reset: false}
-        : {currStr: state.currStr.concat(operand), formulaArr: state.formulaArr, formulaStr: state.formulaStr.concat(operand), reset: false})};
+        : {currStr: operand, formulaArr: state.formulaArr, formulaStr: operand, reset: false}
 
+        )};
+        
+
+    /** Does the infix to postfix operation */
     const infixToPostFix = (state) => {
         const formstr = state.formulaStr;
         const formarr = state.formulaArr;
         let postfixstr = '';
         let stack = [];
 
-        console.log(formarr);
         /** checks if the topstack is greater or equal in precedence to operand */
         const shouldPopStack =(operand)=>{
 
@@ -102,7 +217,6 @@ const JsCalculator = () =>{
         }
 
         // SCANNING ARR
-
         for (let item of formarr) {
             // if its a digit or dec
             if (item.search(/[0-9.]/) > -1)
@@ -119,14 +233,11 @@ const JsCalculator = () =>{
         }
         while (stack.length != 0)
             postfixstr += "," + stack.pop();
-        console.log('postfixstr:' + postfixstr)
         return postfixstr;
     }
 
+    /** Does the infix to postfix operation */
     const evalFormula = (state) => {
-        // convert infix expression to a postfix expression
-        // https://www.youtube.com/watch?v=kKSENzdu7bE
-        // https://www.youtube.com/watch?v=UKuIw8cKKsc
 
         let newState = {currStr: state.currStr, formulaArr: [...state.formulaArr, state.currStr], formulaStr: state.formulaStr, reset: false }
 
@@ -147,8 +258,6 @@ const JsCalculator = () =>{
         for (let item of postfixArr){
             // if item is an operand
             if (item.search(/[0-9]/) != -1) {
-                console.log("item.seatch:"+item.search(/[-+*/]/));
-                console.log('item is :'+item+' and is not an operator');
                 stack.push(item)
 
             }
@@ -178,12 +287,14 @@ const JsCalculator = () =>{
 
     const [state, dispatch] = useReducer(reducer, {currStr:'0', formulaArr:[], formulaStr:'', reset: true});
 
-
     return (
-        <section>
-            <Display state={state}/>
-            <Buttons dispatch={dispatch}/>
-        </section>
+        <main>
+            <NavBar />
+            {/* <Header /> */}
+            <CalculatorContainer state={state} dispatch={dispatch}/>
+            <EndWriteUp />
+
+        </main>
     )
 }
 
