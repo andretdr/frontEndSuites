@@ -30,7 +30,7 @@ const NavBar = () => {
     return (
         <nav className="container-xl py-3">
             <a className="text-dark" data-bs-toggle="offcanvas" href="#offcanvas" role="button" aria-controls="offcanvasExample">
-            <ThreeDotsVertical size={20}/>
+            <ThreeDotsVertical size={20} className='text-primary'/>
             </a>
 
             <div className="offcanvas offcanvas-start" data-bs-scroll="true" tabIndex="-1" id="offcanvas" aria-labelledby="offcanvasTimerLabel">
@@ -49,19 +49,19 @@ const NavBar = () => {
                 </div>
                 <ul className="navbar-nav justify-content-end flex-grow-1 pe-3 mt-5">
                     <li className="nav-item">
-                        <Link to="/randomquote" className="nav-link text-dark" aria-current="page"><small>Random Quote Generator</small></Link>
+                        <Link to="/randomquote" className="nav-link text-primary" aria-current="page"><small>Random Quote Generator</small></Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/markdownpreviewer" className="nav-link text-dark" aria-current="page"><small>Mark Down Previewer</small></Link>
+                        <Link to="/markdownpreviewer" className="nav-link text-primary" aria-current="page"><small>Mark Down Previewer</small></Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/drummachine" className="nav-link text-dark" aria-current="page"><small>Drum Machine</small></Link>
+                        <Link to="/drummachine" className="nav-link text-primary" aria-current="page"><small>Drum Machine</small></Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/jscalculator" className="nav-link text-dark" aria-current="page"><small>JS Calculator</small></Link>
+                        <Link to="/jscalculator" className="nav-link text-primary" aria-current="page"><small>JS Calculator</small></Link>
                     </li>
                     <li className="nav-item">
-                        <div to="/clock255" className="nav-link text-dark lead" aria-current="page">Interval Timer</div>
+                        <div to="/clock255" className="nav-link text-primary lead" aria-current="page">Interval Timer</div>
                     </li>
                 </ul>
 
@@ -90,10 +90,10 @@ const BreakComponent = props =>{
                 
             </h3>
             <button id="break-increment" onClick={()=>handleBreak(1)} className="break-increment break__flex-center">
-                <CaretUpFill size={25}/>
+                <CaretUpFill size={25} className='text-primary'/>
             </button>
             <button id="break-decrement" onClick={()=>handleBreak(-1)} className="break-decrement break__flex-center">
-                <CaretDownFill size={25}/>
+                <CaretDownFill size={25} className='text-primary'/>
             </button>
 
             <small id='break-label' className="break-label break__flex-center text-center">
@@ -123,10 +123,10 @@ const SessionComponent = props =>{
         <div id='session' className="session">
             
             <button id="session-increment" onClick={()=>handleSession(1)} className="session-increment session__flex-center">
-               <CaretUpFill size={25}/>
+               <CaretUpFill size={25} className='text-primary'/>
             </button>
             <button id="session-decrement" onClick={()=>handleSession(-1)} className="session-decrement session__flex-center">
-                <CaretDownFill size={25}/>
+                <CaretDownFill size={25} className='text-primary'/>
             </button>
 
             <small id="session-label" className="session-label session__flex-center text-center">
@@ -167,10 +167,10 @@ const ControlComponent = props =>{
     return (
         <div id='control' className="controls d-flex flex-row justify-content-center align-items-end">
             {   props.play
-                ? <button id='start_stop' onClick={props.handlePause} className="mx-2 text-center"><PauseCircle size={40}/></button>
-                : <button id='start_stop' onClick={props.handlePlay} className="mx-2 text-center"><PlayCircle size={40}/></button>
+                ? <button id='start_stop' onClick={props.handlePause} className="mx-2 text-center"><PauseCircle size={40} className='text-primary'/></button>
+                : <button id='start_stop' onClick={props.handlePlay} className="mx-2 text-center"><PlayCircle size={40} className='text-primary'/></button>
             }
-            <button id='reset' onClick={props.handleReset} className="mx-2"><ArrowRepeat size={40}/></button>
+            <button id='reset' onClick={props.handleReset} className="mx-2"><ArrowRepeat className='text-primary' size={40}/></button>
         </div>
     )
 
