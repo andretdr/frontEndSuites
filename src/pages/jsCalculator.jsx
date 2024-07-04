@@ -8,6 +8,7 @@
      https://www.youtube.com/watch?v=UKuIw8cKKsc
 */
 
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useState, useReducer, useEffect } from 'react'
 import buttons from '../data/jsCalculatorInit.js'
@@ -31,22 +32,19 @@ const NavBar = () =>{
                 <div className="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                     <ul className="navbar-nav">
                         <li className="nav-item ms-auto me-auto">
-                            <a className="nav-link" href="/">Home</a>
+                            <Link to="/randomquote" className="nav-link">Random Quote</Link>
                         </li>
                         <li className="nav-item ms-auto me-auto">
-                            <a className="nav-link" href="/randomquote">Random Quote</a>
+                            <Link to="/markdownpreviewer" className="nav-link">Mark Down Previewer</Link>
                         </li>
                         <li className="nav-item ms-auto me-auto">
-                            <a className="nav-link" href="/markdownpreviewer">Mark Down Previewer</a>
+                            <Link to="/drummachine" className="nav-link">Drum Machine</Link>
                         </li>
                         <li className="nav-item ms-auto me-auto">
-                            <a className="nav-link" href="/drummachine">Drum Machine</a>
+                            <div to="/jscalculator" className="nav-link fs-5 pt-1">Calculator</div>
                         </li>
                         <li className="nav-item ms-auto me-auto">
-                            <a className="nav-link" href="/jscalculator">Calculator</a>
-                        </li>
-                        <li className="nav-item ms-auto me-auto">
-                            <a className="nav-link" href="/clock255">Interval Timer</a>
+                            <Link to="/clock255" className="nav-link">Interval Timer</Link>
                         </li>
                     </ul>
 

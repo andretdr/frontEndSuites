@@ -6,6 +6,7 @@
 
 
 import 'bootstrap/dist/css/bootstrap.css';
+import { Link } from 'react-router-dom';
 import React, { useEffect } from "react"
 import {useState} from 'react'
 import { ThreeDotsVertical } from 'react-bootstrap-icons'
@@ -26,42 +27,39 @@ const RESET = {break: 5, session: 25, current: {time: '25.00', session: true}, c
 const NavBar = () => {
     return (
         <nav className="container-xl py-3">
-            <a class="text-dark" data-bs-toggle="offcanvas" href="#offcanvas" role="button" aria-controls="offcanvasExample">
+            <a className="text-dark" data-bs-toggle="offcanvas" href="#offcanvas" role="button" aria-controls="offcanvasExample">
             <ThreeDotsVertical size={20}/>
             </a>
 
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Interval Timer</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <div className="offcanvas offcanvas-start" tabIndex="-1" id="offcanvas" aria-labelledby="offcanvasExampleLabel">
+            <div className="offcanvas-header">
+                <h5 className="offcanvas-title" id="offcanvasExampleLabel">Front End Suites</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body">
+            <div className="offcanvas-body">
                 <div>
-                    <div>
+                    <small>
                     {clock255WriteUp}
-                    </div>
-                    <p className="text-end">
+                    </small>
+                    <p className="text-end"><small>
                         It is created by Andre Tong
-                    </p>
+                    </small></p>
                 </div>
                 <ul className="navbar-nav justify-content-end flex-grow-1 pe-3 mt-5">
                     <li className="nav-item">
-                        <a className="nav-link text-dark" aria-current="page" href="/">Home</a>
+                        <Link to="/randomquote" className="nav-link text-dark" aria-current="page"><small>Random Quote Generator</small></Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link text-dark" aria-current="page" href="/randomquote">Random Quote Generator</a>
+                        <Link to="/markdownpreviewer" className="nav-link text-dark" aria-current="page"><small>Mark Down Previewer</small></Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link text-dark" aria-current="page" href="/markdownpreviewer">Mark Down Previewer</a>
+                        <Link to="/drummachine" className="nav-link text-dark" aria-current="page"><small>Drum Machine</small></Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link text-dark" aria-current="page" href="/drummachine">Drum Machine</a>
+                        <Link to="/jscalculator" className="nav-link text-dark" aria-current="page"><small>JS Calculator</small></Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link text-dark" aria-current="page" href="/jscalculator">JS Calculator</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link text-dark" aria-current="page" href="/clock255">Interval Timer</a>
+                        <div to="/clock255" className="nav-link text-dark lead" aria-current="page">Interval Timer</div>
                     </li>
                 </ul>
 
@@ -89,7 +87,7 @@ const BreakComponent = props =>{
         }
 
     return (
-        <div id='break' class='break'>
+        <div id='break' className='break'>
             <h3 className="display-3">
                 
             </h3>
