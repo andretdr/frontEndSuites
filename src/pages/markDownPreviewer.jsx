@@ -33,7 +33,7 @@ const NavBar = () => {
             <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="offcanvas offcanvas-end" data-bs-scroll="true" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div className="offcanvas-header">
             {/* <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Front End Suites</h5> */}
             <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -137,10 +137,10 @@ const MarkDownPreviewer = () => {
                     <NavBar />
                 </div>
                 <div className='row mb-5'>
-                    <section className='col col-md-6'>
+                    <section className='col-12 col-md-6'>
                         <EditorComponent />
                     </section>
-                    <section className='col col-md-6'>
+                    <section className='col-12 col-md-6'>
                         <PreviewComponent />
                     </section>
                 </div>

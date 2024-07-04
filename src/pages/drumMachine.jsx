@@ -45,18 +45,6 @@ function loadedAudio() {
 }
 
 
-
-function playAudio(upperCaseKey){
-    let sound = audioArray[upperCaseKey];
-    
-    sound.pause();
-    sound.currentTime = 0;
-//    sound.volume = volume/10;
-    sound.play();
-}
-
-
-
 /** Info Section */
 const WriteUp = () => {
     return (
@@ -150,7 +138,7 @@ const KeyPad = (props) => {
                 <div className='grid'>
                     {letterArr.map(item=>
                     <div key={'grid'+item} id={'grid'+item} className='d-flex justify-content-center align-items-center'>
-                        <button onClick={()=>playAudio(item.toUpperCase())} //()=>handlePlay(item)} 
+                        <button onClick={()=>handlePlay(item)} 
                         className='btn btn-lg btn-secondary drum-pad' id={'sound'+item}>
 
                             {item.toUpperCase()}
@@ -204,6 +192,16 @@ const ControlPad = (props) => {
 }
 
 
+const Demo_NA = () => {
+
+    return (
+        <div className='d-flex flex-column flex-md-row justify-content-center'>
+            <h6 className='display-6 text-center m-2 m-md-5 history-label'>Demo not available for mobile</h6>
+        </div>
+    )
+}
+
+
 /* main parent component */
 const DrumMachine = () => {
     // states
@@ -219,9 +217,6 @@ const DrumMachine = () => {
         else 
             return ({key:'', toggle: state.toggle});
     }
-    
-
-
 
     // useReducer for this instead
     const[keyPress, dispatch] = useReducer(reducer, {key:'', toggle: false});
@@ -242,9 +237,15 @@ const DrumMachine = () => {
     /* listening to keypress state, if changes, play sound*/
     useEffect(()=>{
         if ((keyPress.key !='') && power) {
-//            playAudio(keyPress.key.toUpperCase())
+            let sound = audioArray[keyPress.key.toUpperCase()];
+    
+            sound.pause();
+            sound.currentTime = 0;
+            sound.volume = volume/10;
+            sound.play();
         }
     }, [keyPress])
+
 
     return (
         <>
@@ -260,7 +261,7 @@ const DrumMachine = () => {
                 <History />
             </section>
 
-            <section  id='drum-machine' className='container-xl py-5'>
+            <section id='drum-machine' className='container-xl py-5 d-none d-md-block'>
                 <div className='d-flex flex-column flex-md-row justify-content-center'>
                     <div className='d-flex flex-row justify-content-center'>
                         <ControlPad keyPress={keyPress.key} power={{power:power, set:setPower}} 
@@ -270,6 +271,10 @@ const DrumMachine = () => {
                         <KeyPad dispatch={dispatch}/>
                     </div>
                 </div>
+            </section>
+
+            <section className='demo-na container-xl py-5 d-block d-md-none bg-white'>
+                <Demo_NA />
             </section>
 
             <section className='bg-light py-5'>

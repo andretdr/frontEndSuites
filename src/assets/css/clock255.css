@@ -82,7 +82,7 @@
 .clock-container{
     display: grid;
     grid-template-columns: 50px calc(50% - 50px) calc(50% - 50px) 50px;
-    grid-template-rows: 80px 30% 100px 100px calc(50% - 100px);
+    grid-template-rows: 80px 20% 100px 100px calc(50% - 100px);
 }
 
 .break{
