@@ -28,3 +28,7 @@
 #navbarNavDropdown{
   z-index: 5;
 }
+
+.__cancel-hover:hover{
+  background-color: transparent;
+}

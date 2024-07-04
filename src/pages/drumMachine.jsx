@@ -2,6 +2,8 @@
  * THIS PROJECT USES REACT, BOOTSTRAP and CSS
 */
 
+import { Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.css';
 import React, { useReducer } from 'react'
 import { useState, useEffect } from 'react'
 import { displayMapping, audioMapping } from '../data/drumMachineInit';
@@ -11,6 +13,7 @@ import drumMachine from '../assets/images/drumMachine.png'
 import { drumMachineWriteUp } from '../data/writeup.js'
 import { drumMachineHistory } from '../data/drumMachineInit.js'
 import { VolumeUpFill } from 'react-bootstrap-icons'
+import { List } from 'react-bootstrap-icons'
 
 
 /** Info Section */
@@ -53,36 +56,33 @@ const NavBar = () => {
         <nav className="navbar-light navbar-expand-lg bg-light py-2">
             <div className="container-fluid">
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
+                <span className="navbar-toggler-icon"><List size={25}/></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
                     <a className="navbar-brand mx-5 d-none d-lg-block" href="#drum-machine">
                     <img src={drumSVG} alt="Logo" width="40" height="41" className="d-inline-block align-text-top"></img>
-                   
                     </a>
-                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li className="nav-item">
-                    <a className="nav-link" href="/">Home</a>
-                    </li>
-                    <li className="nav-item">
-                    <a className="nav-link" href="/randomquote">Random Quote Generator</a>
-                    </li>
-                    <li className="nav-item">
-                    <a className="nav-link" href="/markdownpreviewer">Mark Down Previewer</a>
-                    </li>
-                    <li className="nav-item">
-                    <a className="nav-link" href="/drummachine">Drum Machine</a>
-                    </li>
-                    <li className="nav-item">
-                    <a className="nav-link" href="/jscalculator">JS Calculator</a>
-                    </li>
-                    <li className="nav-item">
-                    <a className="nav-link" href="/clock255">Interval Timer</a>
-                    </li>
-                </ul>
+
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
+                        <li className="nav-item mx-2">
+                        <Link to="/randomquote" className="nav-link" >Random Quote Generator</Link>
+                        </li>
+                        <li className="nav-item mx-2">
+                        <Link to="/markdownpreviewer" className="nav-link" >Mark Down Previewer</Link>
+                        </li>
+                        <li className="nav-item mx-2">
+                        <div to="/drummachine" className="nav-link fs-5 pt-1" >Drum Machine</div>
+                        </li>
+                        <li className="nav-item mx-2">
+                        <Link to="/jscalculator" className="nav-link" >JS Calculator</Link>
+                        </li>
+                        <li className="nav-item mx-2">
+                        <Link to="/clock255" className="nav-link" >Interval Timer</Link>
+                        </li>
+                    </ul>
 
                 <div className='mx-5'>
-                    <a className="nav-link text-dark  d-none d-lg-block" href="/">Front End Suites</a>
+                    <div className="nav-link text-dark  d-none d-lg-block" href="/">Front End Suites</div>
                     
                 </div>
 

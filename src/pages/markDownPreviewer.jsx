@@ -1,11 +1,13 @@
 /** 
  * THIS PROJECT USES REACT, BOOTSTRAP, CSS
 */
+import { Link } from 'react-router-dom';
 
 import React from 'react'
 import { marked } from 'marked'
 import { createContext, useContext, useEffect, useState } from 'react'
 import defaultText from '../data/markDownText.js'
+import 'bootstrap/dist/css/bootstrap.css';
 import '../assets/css/markDownPreviewer.css'
 import { markDownWriteUp } from '../data/writeup.js'
 
@@ -26,7 +28,7 @@ const NavBar = () => {
     return (
     <nav className="navbar navbar-dark bg-secondary">
     <div className="container-fluid">
-        <a className="navbar-brand text-white" href="/">Front End Suites</a>
+        <div className="navbar-brand text-white" href="/">Front End Suites</div>
         <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
         </button>
@@ -40,22 +42,19 @@ const NavBar = () => {
         <div className="offcanvas-body">
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li className="nav-item">
-                    <a className="nav-link text-dark" href="/">Home</a>
+                    <Link to="/randomquote" className="nav-link text-dark __nav-link">Random Quote Generator</Link>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link text-dark" href="/randomquote">Random Quote Generator</a>
+                    <div to="/markdownpreviewer" className="nav-link text-dark fs-5 __nav-link" aria-current="page">Mark Down Previewer</div>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link text-dark" aria-current="page" href="/markdownpreviewer">Mark Down Previewer</a>
+                    <Link to="/drummachine" className="nav-link text-dark __nav-link">Drum Machine</Link>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link text-dark" href="/drummachine">Drum Machine</a>
+                    <Link to="/jscalculator" className="nav-link text-dark __nav-link">JS Calculator</Link>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link text-dark" href="/jscalculator">JS Calculator</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link text-dark" href="/clock255">Interval Timer</a>
+                    <Link to="/clock255" className="nav-link text-dark __nav-link">Interval Timer</Link>
                 </li>
             </ul>
 
@@ -67,9 +66,6 @@ const NavBar = () => {
                 <p className='my-4 col-10'>{markDownWriteUp}</p>
                 <p className='my-4 text-end col-10'>Created by Andre Tong</p>
             </div>
-
-
-
         </div>
     </div>
     </nav>

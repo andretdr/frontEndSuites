@@ -8,11 +8,12 @@
      https://www.youtube.com/watch?v=UKuIw8cKKsc
 */
 
-
+import 'bootstrap/dist/css/bootstrap.css';
 import { useState, useReducer, useEffect } from 'react'
 import buttons from '../data/jsCalculatorInit.js'
 import '../assets/css/calculator.css'
 import { List } from 'react-bootstrap-icons'
+import { CalculatorFill } from 'react-bootstrap-icons'
 import { jsCalculatorWriteUp } from '../data/writeup.js'
 
 
@@ -23,7 +24,7 @@ const NavBar = () =>{
     <div className="container-xl bg-primary">
         <nav className="navbar navbar-expand-md navbar-dark">
             <div className="container-xl">
-                <a className="navbar-brand me-auto" href="/">Front End Suites</a>
+                <div className="navbar-brand me-auto" href="/"><span className='me-2'><CalculatorFill /></span>Front End Suites</div>
                 <button className="navbar-toggler border-0 ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <List />
                 </button>

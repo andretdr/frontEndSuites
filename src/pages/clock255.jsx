@@ -4,6 +4,8 @@
     https://www.pexels.com/photo/scenic-view-of-mountains-during-dawn-1261728/
 */
 
+
+import 'bootstrap/dist/css/bootstrap.css';
 import React, { useEffect } from "react"
 import {useState} from 'react'
 import { ThreeDotsVertical } from 'react-bootstrap-icons'
@@ -12,7 +14,6 @@ import { CaretDownFill } from 'react-bootstrap-icons'
 import { PlayCircle } from 'react-bootstrap-icons'
 import { PauseCircle } from 'react-bootstrap-icons'
 import { ArrowRepeat } from 'react-bootstrap-icons'
-import {  } from 'react-bootstrap-icons'
 import { clock255WriteUp } from '../data/writeup.js'
 import '../assets/css/clock255.css'
 

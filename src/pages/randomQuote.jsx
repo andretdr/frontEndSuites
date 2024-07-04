@@ -2,6 +2,9 @@
  * THIS PROJECT USES REACT, REDUX, BOOTSTRAP, CSS
 */
 
+import 'bootstrap/dist/js/bootstrap.js';
+import 'bootstrap/dist/css/bootstrap.css';
+import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
 import { Provider } from 'react-redux'
 import colorList from '../data/colors'
@@ -86,20 +89,19 @@ const NavBar =() => {
     <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
         <div className="container-fluid">
 
-            <a className="navbar-brand mx-5" href="/">Front End Suites</a>
+            <div className="navbar-brand mx-5" href="/">Front End Suites</div>
 
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse bg-fade" id="navbarNavDropdown">
-                <ul className="navbar-nav ms-auto">
+                <ul className="navbar-nav ms-auto align-items-center">
 
-                    <li><a className="nav-link dropdown-item" href="/">Home</a></li>
-                    <li><a className="nav-link dropdown-item" href="/randomquote">Random Quote Generator</a></li>
-                    <li><a className="nav-link dropdown-item" href="/markdownpreviewer">Markdown Previewer</a></li>
-                    <li><a className="nav-link dropdown-item" href="/drummachine">Drum Machine</a></li>
-                    <li><a className="nav-link dropdown-item" href="/jscalculator">JS Calculator</a></li>
-                    <li><a className="nav-link dropdown-item" href="/clock255">Interval Timer</a></li>
+                    <li><div to="/randomquote" className="nav-link fs-5 dropdown-item __cancel-hover" >Random Quote Generator</div></li>
+                    <li><Link to="/markdownpreviewer" className="nav-link dropdown-item  __cancel-hover">Markdown Previewer</Link></li>
+                    <li><Link to="/drummachine" className="nav-link dropdown-item  __cancel-hover">Drum Machine</Link></li>                  
+                    <li><Link to="/jscalculator" className="nav-link dropdown-item  __cancel-hover">JS Calculator</Link></li>
+                    <li><Link to="/clock255" className="nav-link dropdown-item  __cancel-hover">Interval Timer</Link></li>
                     <li><div className="nav-link dropdown-item d-block d-lg-none" href="#" data-bs-toggle="modal" data-bs-target="#infoModal">Info</div></li>
 
                     <button className="info-button ms-auto col-1 mx-5 d-none d-lg-block">
