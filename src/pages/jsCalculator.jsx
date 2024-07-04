@@ -180,6 +180,8 @@ const JsCalculator = () =>{
         ? {currStr: state.currStr.concat(operand), formulaArr: state.formulaArr, formulaStr: state.formulaStr.concat(operand), reset: false}
         : (state.formulaStr.length === 0)
         ? {currStr: operand, formulaArr: state.formulaArr, formulaStr: state.formulaStr.concat(operand), reset: false}
+        : (state.formulaStr[state.formulaStr.length - 1].search(/[+*/-]/) > -1)
+        ? {currStr: operand, formulaArr: state.formulaArr, formulaStr: state.formulaStr.concat(operand), reset: false}
         : {currStr: operand, formulaArr: state.formulaArr, formulaStr: operand, reset: false}
 
         )};

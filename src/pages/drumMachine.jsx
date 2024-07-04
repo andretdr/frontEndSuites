@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import React, { useReducer } from 'react'
 import { useState, useEffect } from 'react'
 
-import { displayMapping, audioMapping } from '../data/drumMachineInit';
+import { letterMapping, displayMapping, audioMapping } from '../data/drumMachineInit';
 import { drumMachineWriteUp } from '../data/writeup.js'
 import { drumMachineHistory } from '../data/drumMachineInit.js'
 
@@ -19,14 +19,23 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { VolumeUpFill } from 'react-bootstrap-icons'
 import { List } from 'react-bootstrap-icons'
 
+/** plays audio */
+const playsound = (id) => {
+    let soundEl = document.getElementById(id)
+    
+    soundEl.pause();
+    soundEl.currentTime = 0;
+    soundEl.play();
+}
+
 
 /** Info Section */
 const WriteUp = () => {
     return (
 
         <div className='container-lg'>
-            <p className='text-justify m-5'>{drumMachineWriteUp}</p>
-            <p className='text-end m-5'>It is created by Andre Tong</p>
+            <p className='text-justify m-2 m-md-5 writeup-text'>{drumMachineWriteUp}</p>
+            <p className='text-end m-2 m-md-5 writeup-text'>It is created by Andre Tong</p>
         </div> 
 
             )
@@ -35,7 +44,7 @@ const WriteUp = () => {
 
 /** Drum Machine Image */
 const Image = () => {
-    return  <img key='drum-machine' src={drumMachine} alt="Drum Machine" width="1400" height="800" className="d-inline-block"></img>
+    return  <img id='drum-machine-img' key='drum-machine' src={drumMachine} alt="Drum Machine"  className="d-inline-block"></img>
 }
 
 
@@ -43,9 +52,9 @@ const Image = () => {
 const History = () => {
     return  (
         <div className='container-lg'>
-            <h6 className='display-6 text-center m-5'>Drum Machine</h6>
+            <h6 className='display-6 text-center m-2 m-md-5 history-label'>Drum Machine</h6>
             {drumMachineHistory.map((item, key)=>{
-                return <p key={key} className='text-justify m-5'>{item}</p>
+                return <p key={key} className='text-justify m-4 m-md-5 history-text'>{item}</p>
             })}
             
         </div> 
@@ -60,12 +69,14 @@ const NavBar = () => {
         <nav className="navbar-light navbar-expand-lg bg-light py-2">
             <div className="container-fluid">
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"><List size={25}/></span>
+                <span className="navbar-toggler-icon">
+                <img src={drumSVG} alt="Logo" width="25" height="26" className="d-inline-block align-text-top"></img>
+                </span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-                    <a className="navbar-brand mx-5 d-none d-lg-block" href="#drum-machine">
+                    <div className="navbar-brand mx-5 d-none d-lg-block" href="#drum-machine">
                     <img src={drumSVG} alt="Logo" width="40" height="41" className="d-inline-block align-text-top"></img>
-                    </a>
+                    </div>
 
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
                         <li className="nav-item mx-2">
@@ -99,14 +110,24 @@ const NavBar = () => {
 
 /* Key pad */
 const KeyPad = (props) => {
-    const letterArr = ['q','w','e','a','s','d','z','x','c'];
+    const letterArr = ['Q','W','E','A','S','D','Z','X','C'];
+
+    const handlePlay = (item) =>{
+        props.dispatch({type:item});
+        playsound(item.toUpperCase());
+
+    }
 
     return (<>
                 <div className='grid'>
                     {letterArr.map(item=>
                     <div key={'grid'+item} id={'grid'+item} className='d-flex justify-content-center align-items-center'>
-                        <button onClick={()=>props.dispatch({type:item})} 
+                        <button onClick={()=>handlePlay(item)} 
                         className='btn btn-lg btn-secondary drum-pad' id={'sound'+item}>
+                            <audio src={letterMapping[item.toUpperCase()]} 
+                                className='clip' 
+                                id={item}>
+                            </audio>
                             {item.toUpperCase()}
                         </button>
                     </div>)}
@@ -194,7 +215,7 @@ const DrumMachine = () => {
         if ((keyPress.key !='') && power) {
             let audio = new Audio(audioMapping[keyPress.key])
             audio.volume = volume/10;
-            audio.play();
+//            audio.play();
         }
     }, [keyPress])
 
@@ -204,7 +225,7 @@ const DrumMachine = () => {
                 <NavBar />
             </section>
 
-            <section id='top' className='d-none d-lg-flex flex-column align-items-center justify-content-start'>
+            <section id='top' className='d-flex flex-row align-items-center justify-content-center'>
                 <Image />
             </section>
 

@@ -31,6 +31,18 @@ audioMapping['z'] = soundz;
 audioMapping['x'] = soundx;
 audioMapping['c'] = soundc;
 
+const letterMapping = {
+    'Q': soundq,
+    'W': soundw,
+    'E': sounde,
+    'A': sounda,
+    'S': sounds,
+    'D': soundd,
+    'Z': soundz,
+    'X': soundx,
+    'C': soundc
+    };
+
 const drumMachineHistory = []
 drumMachineHistory[0] =`
 In 1972, EKO released the ComputeRhythm, one of the – if not ‘the’ – first fully programmable drum machines. The device had a matrix of push buttons arranged in a 16×6 grid with which patterns could be programmed and this set the template for drum machines and pattern sequencers for decades to come. ComputeRhythm also used a conventional analogue subtractive circuit for generating its drum sounds, – bursts of white, pink or brown noise for snares and cymbals, sine and square waves for kick drums and so on.
@@ -39,4 +51,4 @@ drumMachineHistory[1] =`
 By the end of the decade, Roland had entered the drum machine fray with the CompuRhythm CR-78. Whilst still relying on subtractive synthesis for sound generation and not fully programmable, the CR-78 was nevertheless an important milestone as it was the first drum machine to be controlled via a digital microprocessor. Not only did this hugely increase the number of preset patterns that could be included in the device, it also laid the foundations for the rise of not one but two legends of modern music-making.
 `
 
-export {displayMapping, audioMapping, drumMachineHistory}
+export {displayMapping, letterMapping, audioMapping, drumMachineHistory}
