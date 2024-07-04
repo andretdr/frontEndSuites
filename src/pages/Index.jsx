@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './styles.css'
 
-import { useNavigate } from "react-router-dom";
+import { HashRouter as Router, useNavigate } from "react-router-dom";
 
 /** Array of available links */
 const links = [
