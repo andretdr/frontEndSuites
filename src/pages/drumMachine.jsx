@@ -46,7 +46,14 @@ function loadedAudio() {
 
 
 
-
+function playAudio(upperCaseKey){
+    let sound = audioArray[upperCaseKey];
+    
+    sound.pause();
+    sound.currentTime = 0;
+//    sound.volume = volume/10;
+    sound.play();
+}
 
 
 
@@ -143,7 +150,7 @@ const KeyPad = (props) => {
                 <div className='grid'>
                     {letterArr.map(item=>
                     <div key={'grid'+item} id={'grid'+item} className='d-flex justify-content-center align-items-center'>
-                        <button onClick={()=>handlePlay(item)} 
+                        <button onClick={()=>playAudio(item.toUpperCase())} //()=>handlePlay(item)} 
                         className='btn btn-lg btn-secondary drum-pad' id={'sound'+item}>
 
                             {item.toUpperCase()}
@@ -235,12 +242,7 @@ const DrumMachine = () => {
     /* listening to keypress state, if changes, play sound*/
     useEffect(()=>{
         if ((keyPress.key !='') && power) {
-            let sound = audioArray[keyPress.key.toUpperCase()];
-    
-            sound.pause();
-            sound.currentTime = 0;
-            sound.volume = volume/10;
-            sound.play();
+//            playAudio(keyPress.key.toUpperCase())
         }
     }, [keyPress])
 
