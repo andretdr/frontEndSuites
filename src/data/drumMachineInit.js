@@ -31,17 +31,17 @@ audioMapping['z'] = soundz;
 audioMapping['x'] = soundx;
 audioMapping['c'] = soundc;
 
-const letterMapping = {
-    'Q': soundq,
-    'W': soundw,
-    'E': sounde,
-    'A': sounda,
-    'S': sounds,
-    'D': soundd,
-    'Z': soundz,
-    'X': soundx,
-    'C': soundc
-    };
+const letterMapping = [
+    {key:'Q', url:soundq},
+    {key:'W', url:soundw},
+    {key:'E', url:sounde},
+    {key:'A', url:sounda},
+    {key:'S', url:sounds},
+    {key:'D', url:soundd},
+    {key:'Z', url:soundz},
+    {key:'X', url:soundx},
+    {key:'C', url:soundc}
+    ]
 
 const drumMachineHistory = []
 drumMachineHistory[0] =`

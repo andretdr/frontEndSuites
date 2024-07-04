@@ -19,14 +19,35 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { VolumeUpFill } from 'react-bootstrap-icons'
 import { List } from 'react-bootstrap-icons'
 
-/** plays audio */
-const playsound = (id) => {
-    let soundEl = document.getElementById(id)
-    
-    soundEl.pause();
-    soundEl.currentTime = 0;
-    soundEl.play();
+
+
+
+
+let audioArray = [];
+function preloadAudio() {
+    for (let item of letterMapping){
+        audioArray[item.key] = new Audio(item.url);
+        audioArray[item.key].addEventListener('canplaythrough', loadedAudio, false);
+    }
+    // once this file loads, it will call loadedAudio()
+    // the file will be kept by the browser as cache
 }
+    
+var loaded = 0;
+function loadedAudio() {
+    // this will be called every time an audio file is loaded
+    // we keep track of the loaded files vs the requested files
+    loaded++;
+    if (loaded == 9){
+    	// all have loaded
+    console.log('loaded!');
+    }
+}
+
+
+
+
+
 
 
 /** Info Section */
@@ -113,8 +134,8 @@ const KeyPad = (props) => {
     const letterArr = ['Q','W','E','A','S','D','Z','X','C'];
 
     const handlePlay = (item) =>{
-        props.dispatch({type:item});
-        playsound(item.toUpperCase());
+        props.dispatch({type:item.toLowerCase()});
+//        playsound(item.toUpperCase());
 
     }
 
@@ -124,10 +145,7 @@ const KeyPad = (props) => {
                     <div key={'grid'+item} id={'grid'+item} className='d-flex justify-content-center align-items-center'>
                         <button onClick={()=>handlePlay(item)} 
                         className='btn btn-lg btn-secondary drum-pad' id={'sound'+item}>
-                            <audio src={letterMapping[item.toUpperCase()]} 
-                                className='clip' 
-                                id={item}>
-                            </audio>
+
                             {item.toUpperCase()}
                         </button>
                     </div>)}
@@ -195,6 +213,9 @@ const DrumMachine = () => {
             return ({key:'', toggle: state.toggle});
     }
     
+
+
+
     // useReducer for this instead
     const[keyPress, dispatch] = useReducer(reducer, {key:'', toggle: false});
 
@@ -206,6 +227,7 @@ const DrumMachine = () => {
     useEffect(()=>{
         // listen for keydown
         document.addEventListener('keydown', handleKeyPress);
+        preloadAudio();
         // cleanup function on dismount
         return ()=>{ document.removeEventListener('keydown', handleKeyPress);} 
     }, []);
@@ -213,9 +235,12 @@ const DrumMachine = () => {
     /* listening to keypress state, if changes, play sound*/
     useEffect(()=>{
         if ((keyPress.key !='') && power) {
-            let audio = new Audio(audioMapping[keyPress.key])
-            audio.volume = volume/10;
-//            audio.play();
+            let sound = audioArray[keyPress.key.toUpperCase()];
+    
+            sound.pause();
+            sound.currentTime = 0;
+            sound.volume = volume/10;
+            sound.play();
         }
     }, [keyPress])
 
