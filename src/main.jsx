@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import './pages/styles.css'
 
-import Index from './pages/Index.jsx'
-import RandomQuote from './pages/randomQuote.jsx'
-import MarkDownPreviewer from './pages/markDownPreviewer.jsx'
-import DrumMachine from './pages/drumMachine.jsx'
-import JsCalculator from './pages/jsCalculator.jsx'
-import Clock255 from './pages/clock255.jsx'
-import Error from './pages/error.jsx'
+import Index from '/src/pages/Index.jsx'
+import RandomQuote from '/src/pages/randomQuote.jsx'
+import MarkDownPreviewer from '/src/pages/markDownPreviewer.jsx'
+import DrumMachine from '/src/pages/drumMachine.jsx'
+import JsCalculator from '/src/pages/jsCalculator.jsx'
+import Clock255 from '/src/pages/clock255.jsx'
+import Error from '/src/pages/error.jsx'
 
 const routerVar = createBrowserRouter([
   { path: '/', element: <Index />, errorElement: <Error /> },
