@@ -89,15 +89,15 @@ const NavBar =() => {
     <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
         <div className="container-fluid">
 
-            <div className="navbar-brand mx-5" href="/">Front End Suites</div>
+            <div className="navbar-brand mx-2 mx-md-5" href="/">Front End Suites</div>
 
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse bg-fade" id="navbarNavDropdown">
-                <ul className="navbar-nav ms-auto align-items-center">
+                <ul className="navbar-nav ms-auto">
 
-                    <li><div to="/randomquote" className="nav-link fs-5 dropdown-item __cancel-hover" >Random Quote Generator</div></li>
+                    <li><div to="/randomquote" className="nav-link fs-5 pt-1 dropdown-item __cancel-hover" >Random Quote Generator</div></li>
                     <li><Link to="/markdownpreviewer" className="nav-link dropdown-item  __cancel-hover">Markdown Previewer</Link></li>
                     <li><Link to="/drummachine" className="nav-link dropdown-item  __cancel-hover">Drum Machine</Link></li>                  
                     <li><Link to="/jscalculator" className="nav-link dropdown-item  __cancel-hover">JS Calculator</Link></li>
@@ -105,7 +105,7 @@ const NavBar =() => {
                     <li><div className="nav-link dropdown-item d-block d-lg-none" href="#" data-bs-toggle="modal" data-bs-target="#infoModal">Info</div></li>
 
                     <button className="info-button ms-auto col-1 mx-5 d-none d-lg-block">
-                        <div className="nav-link dropdown-item bg-fade" href="#" role="button" data-bs-toggle="modal" data-bs-target="#infoModal">
+                        <div className="nav-link dropdown-item text-fade" href="#" role="button" data-bs-toggle="modal" data-bs-target="#infoModal">
                         Info
                         </div>
                     </button>
