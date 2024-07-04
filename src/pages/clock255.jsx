@@ -5,18 +5,20 @@
 */
 
 
-import 'bootstrap/dist/css/bootstrap.css';
 import { Link } from 'react-router-dom';
-import React, { useEffect } from "react"
-import {useState} from 'react'
+import React, { useEffect, useState } from "react"
+
 import { ThreeDotsVertical } from 'react-bootstrap-icons'
 import { CaretUpFill } from 'react-bootstrap-icons'
 import { CaretDownFill } from 'react-bootstrap-icons'
 import { PlayCircle } from 'react-bootstrap-icons'
 import { PauseCircle } from 'react-bootstrap-icons'
 import { ArrowRepeat } from 'react-bootstrap-icons'
+
 import { clock255WriteUp } from '../data/writeup.js'
+
 import '../assets/css/clock255.css'
+import 'bootstrap/dist/css/bootstrap.css';
 
 import alertSound from '../assets/tracks/alert.wav'
 
@@ -31,9 +33,9 @@ const NavBar = () => {
             <ThreeDotsVertical size={20}/>
             </a>
 
-            <div className="offcanvas offcanvas-start" tabIndex="-1" id="offcanvas" aria-labelledby="offcanvasExampleLabel">
+            <div className="offcanvas offcanvas-start" data-bs-scroll="true" tabIndex="-1" id="offcanvas" aria-labelledby="offcanvasTimerLabel">
             <div className="offcanvas-header">
-                <h5 className="offcanvas-title" id="offcanvasExampleLabel">Front End Suites</h5>
+                <h5 className="offcanvas-title" id="offcanvasTimerLabel">Front End Suites</h5>
                 <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div className="offcanvas-body">
@@ -62,10 +64,6 @@ const NavBar = () => {
                         <div to="/clock255" className="nav-link text-dark lead" aria-current="page">Interval Timer</div>
                     </li>
                 </ul>
-
-
-
-
 
             </div>
             </div>

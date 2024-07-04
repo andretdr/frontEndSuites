@@ -3,15 +3,19 @@
 */
 
 import { Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.css';
 import React, { useReducer } from 'react'
 import { useState, useEffect } from 'react'
+
 import { displayMapping, audioMapping } from '../data/drumMachineInit';
-import '../assets/css/drumMachine.css'
-import drumSVG from '../assets/images/drum.png'
-import drumMachine from '../assets/images/drumMachine.png'
 import { drumMachineWriteUp } from '../data/writeup.js'
 import { drumMachineHistory } from '../data/drumMachineInit.js'
+
+import drumSVG from '../assets/images/drum.png'
+import drumMachine from '../assets/images/drumMachine.png'
+
+import '../assets/css/drumMachine.css'
+import 'bootstrap/dist/css/bootstrap.css';
+
 import { VolumeUpFill } from 'react-bootstrap-icons'
 import { List } from 'react-bootstrap-icons'
 
