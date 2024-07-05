@@ -1,0 +1,33 @@
+.page-full{
+  height: 100vh;
+}
+
+/** for disable link **/
+.link__disable{
+  pointer-events: none;
+}
+
+/** class for all image logos */
+.img_logo{
+  transform: scale(0.6);
+}
+
+.about_me{
+  width: 500px;
+}
+
+.about_me-text{
+  width: 300px;
+}
+
+.padding_footer{
+  height: 100px;
+}
+
+.padding_top{
+  padding-top: 20px;
+}
+
+.padding_bottom{
+  padding-bottom: 40px;
+}

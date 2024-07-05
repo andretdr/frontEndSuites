@@ -1,3 +1,16 @@
+const indexWriteUp = []
+indexWriteUp[0] = `
+    Front End Suites`
+indexWriteUp[1] = `
+    Demo projects implemented using Vite, React, Redux, Bootstrap and Vanilla CSS`
+indexWriteUp[2] = `
+    Created by Andre Tong
+`
+indexWriteUp[3] = `Hi I am Andre.`
+indexWriteUp[4] = `I am currently transitioning into a Software Engineer specialising in Full Stack Web Development.`
+indexWriteUp[5] = `I am familiar with Python, C, JS, MySQL, Vanilla CSS, jQuery, SASS, and have worked with frameworks like Flask, React, Bootstrap
+`
+
 const randomQuoteWriteUp = `
     Random Quote Generator is a Front End Project based on the FCC challenge. It is developed using React, Redux, Bootstrap and CSS. It calls an API for a random Quote. It is currently deployed on Vercel.
 `;
@@ -24,4 +37,4 @@ const clock255WriteUp = `
     Interval Timer is a Front End Project based on the FCC challenge. It is developed using React, Bootstrap and CSS. It is currently deployed on Vercel.
 `;
 
-export {randomQuoteWriteUp, markDownWriteUp, drumMachineWriteUp, jsCalculatorWriteUp, clock255WriteUp}
+export {indexWriteUp, randomQuoteWriteUp, markDownWriteUp, drumMachineWriteUp, jsCalculatorWriteUp, clock255WriteUp}

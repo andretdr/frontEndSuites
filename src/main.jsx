@@ -6,7 +6,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { HashRouter, RouterProvider, Route, Routes, createBrowserRouter } from 'react-router-dom'
 //import { browserHistory, Router, Route, IndexRoute } from 'react-router'
-import './pages/styles.css'
+
 
 import Index from '/src/pages/Index.jsx'
 import RandomQuote from '/src/pages/randomQuote.jsx'

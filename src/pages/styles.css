@@ -1,8 +1,0 @@
-.page-full{
-  height: 100vh;
-}
-
-/** for disable link **/
-.link__disable{
-  pointer-events: none;
-}
