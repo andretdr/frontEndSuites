@@ -21,7 +21,7 @@
 }
 
 .padding_footer{
-  height: 100px;
+  padding-bottom: 100px;
 }
 
 .padding_top{
@@ -31,3 +31,20 @@
 .padding_bottom{
   padding-bottom: 40px;
 }
+
+.remove_border{
+  border: none;
+}
+
+.remove_border:hover{
+  border: none;
+}
+
+.remove_border:active{
+  border: none;
+}
+
+.bg-color{
+  background-color: #03a7dd;
+}
+

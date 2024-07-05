@@ -85,6 +85,10 @@
     grid-template-rows: 80px 20% 100px 100px calc(50% - 100px);
 }
 
+.navbar-timer{
+    grid-column: 1/5;
+}
+
 .break{
     grid-column: 2/3;
     grid-row: 2/3;

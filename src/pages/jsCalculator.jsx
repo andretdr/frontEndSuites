@@ -13,9 +13,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { useState, useReducer, useEffect } from 'react'
 import buttons from '../data/jsCalculatorInit.js'
 import '../assets/css/calculator.css'
-import { List } from 'react-bootstrap-icons'
-import { CalculatorFill } from 'react-bootstrap-icons'
+
+import { CalculatorFill, CaretDownFill } from 'react-bootstrap-icons'
 import { jsCalculatorWriteUp } from '../data/writeup.js'
+
+import { indexWriteUp } from '../data/writeup'
+import linkedin from '../assets/images/linkedin.png'
+import github from '../assets/images/github.png'
+import andre from '../assets/images/andre.png'
 
 
 /** NavBar */
@@ -25,12 +30,15 @@ const NavBar = () =>{
     <div className="container-xl bg-primary">
         <nav className="navbar navbar-expand-md navbar-dark">
             <div className="container-xl">
-                <div className="navbar-brand me-auto" href="/"><span className='me-2'><CalculatorFill /></span>Front End Suites</div>
+                <Link to='/' className="navbar-brand me-auto"><span className='me-2'><CalculatorFill /></span>Front End Suites</Link>
                 <button className="navbar-toggler border-0 ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <List />
+                    <span class=""><small className='mx-2'>Links</small><CaretDownFill size={10}/></span>
                 </button>
                 <div className="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                     <ul className="navbar-nav">
+                        <li className="nav-item ms-auto me-auto">
+                            <Link to="/" className="nav-link">Home</Link>
+                        </li>
                         <li className="nav-item ms-auto me-auto">
                             <Link to="/randomquote" className="nav-link">Random Quote</Link>
                         </li>
@@ -141,6 +149,44 @@ const CalculatorContainer = (props) =>{
             </>
     )
 }
+
+/** Footer component */
+const Footer = () => {
+	return (
+	<section id='footer' className='container-lg bg-primary bg-gradient text-white padding_top'>
+		<div className=' p-5 pb-2 d-flex flex-row justify-content-between align-items-center'>
+			<div className='about_me d-flex flex-row justify-content-between align-items-center'>
+				<img src={andre} height='50px' width='50px'/>
+				<div className='mx-3'>
+					<small className='about_me-text'>{indexWriteUp[3]}</small><br/>
+
+					<small className='about_me-text'>{indexWriteUp[5]}</small><br/>
+				</div>
+			</div>	
+			<div className='follow_me'>
+				<a href='https://www.linkedin.com/in/andre-tong-51b9044/'><img src={linkedin} height='50px' width='50px' className='m-2'/></a>
+				<a href='https://github.com/andretdr/frontEndSuites'><img src={github} height='50px' width='50px' className='m-2'/></a>
+			</div>	
+		</div>
+
+		<div className='container-lg'>
+			<hr className='w-75 ms-auto me-auto'/>
+		</div>
+
+		<div className='container-lg d-flex flex-row justify-content-start align-items-center'>
+			<p className='ms-5 me-3 my-1 fw-bold'> Other projects </p>
+			<div>
+				<a className='mx-3 fw-bold text-white' href='https://financeplus-cfec3ff5d154.herokuapp.com/landing'>Finance +</a>
+			</div>
+		</div>
+		<div>
+			<p className='padding_footer m-0'></p>
+		</div>
+	</section>
+	)
+}
+
+
 
 /** Main parent component */
 const JsCalculator = () =>{
@@ -297,7 +343,7 @@ const JsCalculator = () =>{
             {/* <Header /> */}
             <CalculatorContainer state={state} dispatch={dispatch}/>
             <EndWriteUp />
-
+            <Footer />
         </main>
     )
 }

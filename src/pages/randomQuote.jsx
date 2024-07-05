@@ -12,7 +12,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import '../assets/css/randomQuote.css'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { ArrowRightSquare } from 'react-bootstrap-icons'
+import { ArrowRightSquare, CaretDownFill } from 'react-bootstrap-icons'
 import { randomQuoteWriteUp } from '../data/writeup'
 
 //  CONSTANTS //
@@ -75,28 +75,26 @@ const NavBar =() => {
 
     /** trigger reflow for animation reset */
     useEffect(()=>{
-
         let collection = document.getElementsByClassName('bg-fade');
         for (let element of collection){
             element.classList.remove('bg-fade');
             void element.offsetWidth;
             element.classList.add('bg-fade');
         }
-    
     },[color])
 
     return (<>
     <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
         <div className="container-fluid">
 
-            <div className="navbar-brand mx-2 mx-md-5" href="/">Front End Suites</div>
+            <Link to='/' className="navbar-brand mx-2 mx-md-5">Front End Suites</Link>
 
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
+            <button className="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class=""><small className='mx-2'>Links</small><CaretDownFill size={10}/></span>
             </button>
             <div className="collapse navbar-collapse bg-fade" id="navbarNavDropdown">
                 <ul className="navbar-nav ms-auto">
-
+                    <li><Link to="/" className="nav-link dropdown-item  __cancel-hover">Home</Link></li>
                     <li><div to="/randomquote" className="nav-link fs-5 pt-1 dropdown-item __cancel-hover" >Random Quote Generator</div></li>
                     <li><Link to="/markdownpreviewer" className="nav-link dropdown-item  __cancel-hover">Markdown Previewer</Link></li>
                     <li><Link to="/drummachine" className="nav-link dropdown-item  __cancel-hover">Drum Machine</Link></li>                  

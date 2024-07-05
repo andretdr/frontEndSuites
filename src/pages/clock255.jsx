@@ -8,12 +8,7 @@
 import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from "react"
 
-import { ThreeDotsVertical } from 'react-bootstrap-icons'
-import { CaretUpFill } from 'react-bootstrap-icons'
-import { CaretDownFill } from 'react-bootstrap-icons'
-import { PlayCircle } from 'react-bootstrap-icons'
-import { PauseCircle } from 'react-bootstrap-icons'
-import { ArrowRepeat } from 'react-bootstrap-icons'
+import { ArrowRepeat, ThreeDotsVertical, CaretUpFill, CaretDownFill, PlayCircle, PauseCircle, } from 'react-bootstrap-icons'
 
 import { clock255WriteUp } from '../data/writeup.js'
 
@@ -28,12 +23,14 @@ const RESET = {break: 5, session: 25, current: {time: '25.00', session: true}, c
 
 const NavBar = () => {
     return (
-        <nav className="container-xl py-3">
-            <a className="text-dark" data-bs-toggle="offcanvas" href="#offcanvas" role="button" aria-controls="offcanvasExample">
-            <ThreeDotsVertical size={20} className='text-primary'/>
-            </a>
-
-            <div className="offcanvas offcanvas-start" data-bs-scroll="true" tabIndex="-1" id="offcanvas" aria-labelledby="offcanvasTimerLabel">
+        <nav className="container-xl py-3 d-flex flex-row justify-content-end ms-auto navbar-timer">
+            <button className="text-dark border-0 bg-transparent" data-bs-toggle="offcanvas" href="#offcanvas" role="button" aria-controls="offcanvasExample">
+                <span class="d-flex justify-content-center align-items-center"><div className='mx-1'>Links</div><CaretDownFill size={10}/></span>
+            </button>
+            {/* <button class="navbar-toggler remove_border border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class=""><small className='mx-2'>Links</small><CaretDownFill size={10}/></span>
+            </button> */}
+            <div className="offcanvas offcanvas-end" data-bs-scroll="true" tabIndex="-1" id="offcanvas" aria-labelledby="offcanvasTimerLabel">
             <div className="offcanvas-header">
                 <h5 className="offcanvas-title" id="offcanvasTimerLabel">Front End Suites</h5>
                 <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -48,6 +45,9 @@ const NavBar = () => {
                     </small></p>
                 </div>
                 <ul className="navbar-nav justify-content-end flex-grow-1 pe-3 mt-5">
+                    <li className="nav-item">
+                        <Link to="/" className="nav-link text-primary" aria-current="page"><small>Home</small></Link>
+                    </li>
                     <li className="nav-item">
                         <Link to="/randomquote" className="nav-link text-primary" aria-current="page"><small>Random Quote Generator</small></Link>
                     </li>

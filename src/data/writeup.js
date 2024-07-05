@@ -15,9 +15,16 @@ const randomQuoteWriteUp = `
     Random Quote Generator is a Front End Project based on the FCC challenge. It is developed using React, Redux, Bootstrap and CSS. It calls an API for a random Quote. It is currently deployed on Vercel.
 `;
 
-const markDownWriteUp = `
-    Mark Down Previewer is a Front End Project based on the FCC challenge. It is developed using React, Bootstrap and CSS. It is currently deployed on Vercel.
-`;
+const markDownWriteUp = []
+markDownWriteUp[0] = `
+Mark Down Previewer is a Front End Project based on the FCC challenge. It is developed using React, Bootstrap and CSS. It is currently deployed on Vercel.
+`    
+markDownWriteUp[1] = `
+Markdown is a lightweight markup language that you can use to add formatting elements to plaintext text documents. 
+`
+markDownWriteUp[2] = `
+Created by John Gruber in 2004, Markdown is now one of the world’s most popular markup languages.`
+;
 
 const drumMachineWriteUp = `
     Drum Machine is a Front End Project based on the FCC challenge. It is developed using React, Bootstrap and CSS. It is currently deployed on Vercel.

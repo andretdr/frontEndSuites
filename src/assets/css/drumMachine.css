@@ -3,7 +3,7 @@
     height: 200px;
 }
 
-@media only screen and (min-width: 720px) {
+@media only screen and (min-width: 768px) {
     /** med screens **/
 #drum-machine-img{
         width: 700px;
@@ -11,7 +11,7 @@
     }
 }
 
-@media only screen and (min-width: 960px) {
+@media only screen and (min-width: 992px) {
     /**  large screens **/
     #drum-machine-img{
         width: 1050px;

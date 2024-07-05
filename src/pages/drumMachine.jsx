@@ -16,10 +16,12 @@ import drumMachine from '../assets/images/drumMachine.png'
 import '../assets/css/drumMachine.css'
 import 'bootstrap/dist/css/bootstrap.css';
 
-import { VolumeUpFill } from 'react-bootstrap-icons'
-import { List } from 'react-bootstrap-icons'
+import { VolumeUpFill, CaretDownFill } from 'react-bootstrap-icons'
 
-
+import { indexWriteUp } from '../data/writeup'
+import linkedin from '../assets/images/linkedin.png'
+import github from '../assets/images/github.png'
+import andre from '../assets/images/andre.png'
 
 
 
@@ -84,17 +86,22 @@ const NavBar = () => {
     return (
         <nav className="navbar-light navbar-expand-lg bg-light py-2">
             <div className="container-fluid">
+
+                <img src={drumSVG} alt="Logo" width="25" height="26" className="d-inline-block d-lg-none align-text-top"></img>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon">
-                <img src={drumSVG} alt="Logo" width="25" height="26" className="d-inline-block align-text-top"></img>
-                </span>
+                    <small className='p-2 pe-1'>Links</small><CaretDownFill size={12}/>
+                {/* <img src={drumSVG} alt="Logo" width="25" height="26" className="d-inline-block align-text-top"></img> */}
                 </button>
+
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-                    <div className="navbar-brand mx-5 d-none d-lg-block" href="#drum-machine">
+                    <div className="navbar-brand mx-5 d-none d-lg-block" href="">
                     <img src={drumSVG} alt="Logo" width="40" height="41" className="d-inline-block align-text-top"></img>
                     </div>
 
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
+                        <li className="nav-item mx-2">
+                        <Link to="/" className="nav-link" >Home</Link>
+                        </li>
                         <li className="nav-item mx-2">
                         <Link to="/randomquote" className="nav-link" >Random Quote Generator</Link>
                         </li>
@@ -113,12 +120,12 @@ const NavBar = () => {
                     </ul>
 
                 <div className='mx-5'>
-                    <div className="nav-link text-dark  d-none d-lg-block" href="/">Front End Suites</div>
-                    
+                    <Link to='/' className="nav-link text-dark d-none d-lg-block">Front End Suites</Link>
+                </div>
                 </div>
 
-                </div>
             </div>
+
         </nav>
     )
 }
@@ -202,6 +209,42 @@ const Demo_NA = () => {
 }
 
 
+const Footer = () => {
+	return (
+	<section id='footer' className='bg-secondary bg-gradient text-white padding_top'>
+		<div className='container-lg p-5 pb-2 d-flex flex-row justify-content-between align-items-center'>
+			<div className='about_me d-flex flex-row justify-content-between align-items-center'>
+				<img src={andre} height='50px' width='50px'/>
+				<div className='mx-3'>
+					<small className='about_me-text'>{indexWriteUp[3]}</small><br/>
+
+					<small className='about_me-text'>{indexWriteUp[5]}</small><br/>
+				</div>
+			</div>	
+			<div className='follow_me'>
+				<a href='https://www.linkedin.com/in/andre-tong-51b9044/'><img src={linkedin} height='50px' width='50px' className='m-2'/></a>
+				<a href='https://github.com/andretdr/frontEndSuites'><img src={github} height='50px' width='50px' className='m-2'/></a>
+			</div>	
+		</div>
+
+		<div className='container-lg'>
+			<hr className='w-75 ms-auto me-auto'/>
+		</div>
+
+		<div className='container-lg d-flex flex-row justify-content-start align-items-center'>
+			<p className='ms-5 me-3 my-1 fw-bold'> Other projects </p>
+			<div>
+				<a className='mx-3 fw-bold text-white' href='https://financeplus-cfec3ff5d154.herokuapp.com/landing'>Finance +</a>
+			</div>
+		</div>
+		<div>
+			<p className='padding_footer m-0'></p>
+		</div>
+	</section>
+	)
+}
+
+
 /* main parent component */
 const DrumMachine = () => {
     // states
@@ -281,6 +324,7 @@ const DrumMachine = () => {
                 <WriteUp />
             </section>
 
+            <Footer/>
 
         </>
     )
