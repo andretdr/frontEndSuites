@@ -24,7 +24,6 @@ import github from '../assets/images/github.png'
 import andre from '../assets/images/andre.png'
 
 
-
 let audioArray = [];
 function preloadAudio() {
     for (let item of letterMapping){
@@ -136,8 +135,8 @@ const KeyPad = (props) => {
     const letterArr = ['Q','W','E','A','S','D','Z','X','C'];
 
     const handlePlay = (item) =>{
-        props.dispatch({type:item.toLowerCase()});
-//        playsound(item.toUpperCase());
+        props.playsound(item.toLowerCase());
+        props.dispatch({type: item.toLowerCase()});
 
     }
 
@@ -145,11 +144,12 @@ const KeyPad = (props) => {
                 <div className='grid'>
                     {letterArr.map(item=>
                     <div key={'grid'+item} id={'grid'+item} className='d-flex justify-content-center align-items-center'>
-                        <button onClick={()=>handlePlay(item)} 
+                        <button onClick={()=>handlePlay(item)} onContextMenu={(e)=> e.preventDefault()} 
                         className='btn btn-lg btn-secondary drum-pad' id={'sound'+item}>
 
                             {item.toUpperCase()}
                         </button>
+                        <audio id={`audio${item.toLowerCase()}`}><source src={audioMapping[item.toLowerCase()]} type='audio/mpeg'></source></audio>
                     </div>)}
                 </div>
 
@@ -252,6 +252,15 @@ const DrumMachine = () => {
     const [bank, setBank] = useState(false);
     const [volume, setVolume] = useState('5');
 
+    const playsound = (lowerCaseKey) =>{
+        let sound = document.getElementById('audio'+lowerCaseKey)
+        
+        sound.pause();
+        sound.currentTime = 0;
+        sound.volume = volume/10;
+        sound.play();
+    }
+
     /** reducer for non simple action reducing */
     const reducer = (state, action) => {
         const pattern = /\b[qweasdzxc]\b/i;
@@ -265,7 +274,11 @@ const DrumMachine = () => {
     const[keyPress, dispatch] = useReducer(reducer, {key:'', toggle: false});
 
     /** updates keypress state */
-    const handleKeyPress=(event)=>{ dispatch({type: (event.key).toLowerCase()});}
+    const handleKeyPress=(event)=>{ 
+        playsound(event.key.toLowerCase());
+        dispatch({type: (event.key).toLowerCase()});
+     };
+       
 
     /**  will do this on mount only 
      *   handle keydown logic and dispatch */
@@ -276,18 +289,6 @@ const DrumMachine = () => {
         // cleanup function on dismount
         return ()=>{ document.removeEventListener('keydown', handleKeyPress);} 
     }, []);
-
-    /* listening to keypress state, if changes, play sound*/
-    useEffect(()=>{
-        if ((keyPress.key !='') && power) {
-            let sound = audioArray[keyPress.key.toUpperCase()];
-    
-            sound.pause();
-            sound.currentTime = 0;
-            sound.volume = volume/10;
-            sound.play();
-        }
-    }, [keyPress])
 
 
     return (
@@ -304,21 +305,21 @@ const DrumMachine = () => {
                 <History />
             </section>
 
-            <section id='drum-machine' className='container-xl py-5 d-none d-md-block'>
+            <section id='drum-machine' className='container-xl py-5 d-block'>
                 <div className='d-flex flex-column flex-md-row justify-content-center'>
                     <div className='d-flex flex-row justify-content-center'>
                         <ControlPad keyPress={keyPress.key} power={{power:power, set:setPower}} 
                         bank={{bank:bank, set:setBank}} volume={{volume: volume, set:setVolume}}/>
                     </div>
                     <div className=''>
-                        <KeyPad dispatch={dispatch}/>
+                        <KeyPad dispatch={dispatch} playsound={playsound}/>
                     </div>
                 </div>
             </section>
 
-            <section className='demo-na container-xl py-5 d-block d-md-none bg-white'>
+            {/* <section className='demo-na container-xl py-5 d-block d-md-none bg-white'>
                 <Demo_NA />
-            </section>
+            </section> */}
 
             <section className='bg-light py-5'>
                 <WriteUp />

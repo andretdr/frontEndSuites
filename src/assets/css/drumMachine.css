@@ -111,6 +111,14 @@
 .drum-pad{
     height: 90px;
     width: 90px;
+
+    cursor:'pointer';
+  
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+         user-select: none; 
+   -webkit-user-drag: none; 
+
 }
 
 
