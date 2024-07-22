@@ -4,7 +4,7 @@
 
 import { Link } from 'react-router-dom';
 import React, { useReducer } from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import { letterMapping, displayMapping, audioMapping } from '../data/drumMachineInit';
 import { drumMachineWriteUp } from '../data/writeup.js'
@@ -44,6 +44,8 @@ function loadedAudio() {
     console.log('loaded!');
     }
 }
+
+
 
 
 /** Info Section */
@@ -132,12 +134,12 @@ const NavBar = () => {
 
 /* Key pad */
 const KeyPad = (props) => {
+
     const letterArr = ['Q','W','E','A','S','D','Z','X','C'];
 
     const handlePlay = (item) =>{
         props.playsound(item.toLowerCase());
         props.dispatch({type: item.toLowerCase()});
-
     }
 
     return (<>
@@ -244,6 +246,19 @@ const Footer = () => {
 	)
 }
 
+//let audioPool = [{'key':'q'}]
+const audioPool = letterMapping.map((item)=>{return(
+    {key:item.key.toLowerCase(), src:[]}
+)})
+
+for (let item of audioPool){
+    for (let i = 0; i<4; i++)
+        item.src[i] = new Audio(audioMapping[item.key.toLowerCase()]);
+//    console.log(key);
+}
+//console.log(audioPool);
+
+
 
 /* main parent component */
 const DrumMachine = () => {
@@ -251,9 +266,26 @@ const DrumMachine = () => {
     const [power, setPower] = useState(true);
     const [bank, setBank] = useState(false);
     const [volume, setVolume] = useState('5');
+    // counter goes from 0-3;
+    const [counter, setCounter] = useState(0);
+
+    const refCount = useRef(0);
 
     const playsound = (lowerCaseKey) =>{
-        let sound = document.getElementById('audio'+lowerCaseKey)
+        refCount.current = ((refCount.current+1) % 4);
+        setCounter(refCount.current);
+
+        let sound;
+        for (let item of audioPool){
+            if (item.key === lowerCaseKey){
+                sound = item.src[refCount.current]
+                console.log(refCount.current);
+            }
+        }
+
+
+//        let sound = myarr[0];//audioPool['q'][1]; //audioPool['q'][1];//audioPool[lowerCaseKey][counter];
+        //document.getElementById('audio'+lowerCaseKey)
         
         sound.pause();
         sound.currentTime = 0;
@@ -290,6 +322,7 @@ const DrumMachine = () => {
         return ()=>{ document.removeEventListener('keydown', handleKeyPress);} 
     }, []);
 
+//    useEffect(()=>{console.log(counter)},[counter])
 
     return (
         <>

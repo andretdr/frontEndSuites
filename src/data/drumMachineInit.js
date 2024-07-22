@@ -20,7 +20,7 @@ const displayMapping = [{
     'c': 'Closed HH'
 }]
 
-const audioMapping = [{}]
+const audioMapping = []
 audioMapping['q'] = soundq;
 audioMapping['e'] = sounde;
 audioMapping['w'] = soundw;
@@ -30,6 +30,9 @@ audioMapping['d'] = soundd;
 audioMapping['z'] = soundz;
 audioMapping['x'] = soundx;
 audioMapping['c'] = soundc;
+
+
+
 
 const letterMapping = [
     {key:'Q', url:soundq},
