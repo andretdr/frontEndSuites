@@ -146,7 +146,7 @@ const KeyPad = (props) => {
                 <div className='grid'>
                     {letterArr.map(item=>
                     <div key={'grid'+item} id={'grid'+item} className='d-flex justify-content-center align-items-center'>
-                        <button onClick={()=>handlePlay(item)} onContextMenu={(e)=> e.preventDefault()} 
+                        <button onTouchStart={()=>handlePlay(item)} onContextMenu={(e)=> e.preventDefault()} 
                         className='btn btn-lg btn-secondary drum-pad' id={'sound'+item}>
 
                             {item.toUpperCase()}
