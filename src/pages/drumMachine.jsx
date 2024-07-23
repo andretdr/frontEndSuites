@@ -277,10 +277,12 @@ const DrumMachine = () => {
                 sound = item.src[refCount.current]
             }
         }
-        sound.pause();
-        sound.currentTime = 0;
-        sound.volume = volume/10;
-        sound.play();
+        if (power) {
+            sound.pause();
+            sound.currentTime = 0;
+            sound.volume = volume/10;
+            sound.play();
+        }
     }
 
     /** reducer for non simple action reducing */
@@ -307,10 +309,10 @@ const DrumMachine = () => {
     useEffect(()=>{
         // listen for keydown
         document.addEventListener('keydown', handleKeyPress);
-        preloadAudio();
+//        preloadAudio();
         // cleanup function on dismount
         return ()=>{ document.removeEventListener('keydown', handleKeyPress);} 
-    }, []);
+    }, [power]);
 
 
     return (
