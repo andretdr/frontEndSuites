@@ -33,7 +33,8 @@ function preloadAudio() {
     // once this file loads, it will call loadedAudio()
     // the file will be kept by the browser as cache
 }
-    
+
+
 var loaded = 0;
 function loadedAudio() {
     // this will be called every time an audio file is loaded
@@ -46,6 +47,15 @@ function loadedAudio() {
 }
 
 
+/** initialising audio */
+const audioPool = letterMapping.map((item)=>{return(
+    {key:item.key.toLowerCase(), src:[]}
+)})
+
+for (let item of audioPool){
+    for (let i = 0; i<4; i++)
+        item.src[i] = new Audio(audioMapping[item.key.toLowerCase()]);
+}
 
 
 /** Info Section */
@@ -154,8 +164,7 @@ const KeyPad = (props) => {
                         <audio id={`audio${item.toLowerCase()}`}><source src={audioMapping[item.toLowerCase()]} type='audio/mpeg'></source></audio>
                     </div>)}
                 </div>
-
-            </>
+           </>
             )
 }
 
@@ -202,7 +211,6 @@ const ControlPad = (props) => {
 
 
 const Demo_NA = () => {
-
     return (
         <div className='d-flex flex-column flex-md-row justify-content-center'>
             <h6 className='display-6 text-center m-2 m-md-5 history-label'>Demo not available for mobile</h6>
@@ -246,29 +254,6 @@ const Footer = () => {
 	)
 }
 
-//let audioPool = [{'key':'q'}]
-const audioPool = letterMapping.map((item)=>{return(
-    {key:item.key.toLowerCase(), src:[]}
-)})
-
-for (let item of audioPool){
-    for (let i = 0; i<4; i++)
-        item.src[i] = new Audio(audioMapping[item.key.toLowerCase()]);
-//    console.log(key);
-}
-//console.log(audioPool);
-
-const trya = [];
-trya[0] = new Audio(audioMapping['q']);
-trya[1] = new Audio(audioMapping['q']);
-trya[2] = new Audio(audioMapping['q']);
-trya[3] = new Audio(audioMapping['q']);
-trya[4] = new Audio(audioMapping['q']);
-trya[5] = new Audio(audioMapping['q']);
-trya[6] = new Audio(audioMapping['q']);
-trya[7] = new Audio(audioMapping['q']);
-trya[8] = new Audio(audioMapping['q']);
-
 
 /* main parent component */
 const DrumMachine = () => {
@@ -282,25 +267,20 @@ const DrumMachine = () => {
     const refCount = useRef(0);
 
     const playsound = (lowerCaseKey) =>{
-        refCount.current = ((refCount.current+1) % 8);
+        refCount.current = ((refCount.current+1) % 3);
         setCounter(refCount.current);
 
-        //let sound = trya[refCount.current];
+        let sound;
 
-        // for (let item of audioPool){
-        //     if (item.key === lowerCaseKey){
-        //         sound = item.src[refCount.current]
-        //     }
-        // }
-
-
-//        let sound = myarr[0];//audioPool['q'][1]; //audioPool['q'][1];//audioPool[lowerCaseKey][counter];
-        //document.getElementById('audio'+lowerCaseKey)
-        
-        // sound.pause();
-        // sound.currentTime = 0;
-        trya[refCount.current].volume = volume/10;
-        trya[refCount.current].play();
+        for (let item of audioPool){
+            if (item.key === lowerCaseKey){
+                sound = item.src[refCount.current]
+            }
+        }
+        sound.pause();
+        sound.currentTime = 0;
+        sound.volume = volume/10;
+        sound.play();
     }
 
     /** reducer for non simple action reducing */
@@ -332,7 +312,6 @@ const DrumMachine = () => {
         return ()=>{ document.removeEventListener('keydown', handleKeyPress);} 
     }, []);
 
-//    useEffect(()=>{console.log(counter)},[counter])
 
     return (
         <>
@@ -348,7 +327,7 @@ const DrumMachine = () => {
                 <History />
             </section>
 
-            <section id='drum-machine' className='container-xl py-5 d-block'>
+            <section id='drum-machine' className='container-xl py-5 d-none d-md-block'>
                 <div className='d-flex flex-column flex-md-row justify-content-center'>
                     <div className='d-flex flex-row justify-content-center'>
                         <ControlPad keyPress={keyPress.key} power={{power:power, set:setPower}} 
@@ -360,9 +339,9 @@ const DrumMachine = () => {
                 </div>
             </section>
 
-            {/* <section className='demo-na container-xl py-5 d-block d-md-none bg-white'>
+            <section className='demo-na container-xl py-5 d-block d-md-none bg-white'>
                 <Demo_NA />
-            </section> */}
+            </section>
 
             <section className='bg-light py-5'>
                 <WriteUp />
