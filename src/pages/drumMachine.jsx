@@ -285,7 +285,7 @@ const DrumMachine = () => {
         refCount.current = ((refCount.current+1) % 8);
         setCounter(refCount.current);
 
-        let sound = trya[refCount.current];
+        //let sound = trya[refCount.current];
 
         // for (let item of audioPool){
         //     if (item.key === lowerCaseKey){
@@ -299,8 +299,8 @@ const DrumMachine = () => {
         
         // sound.pause();
         // sound.currentTime = 0;
-        sound.volume = volume/10;
-        sound.play();
+        trya[refCount.current].volume = volume/10;
+        trya[refCount.current].play();
     }
 
     /** reducer for non simple action reducing */
