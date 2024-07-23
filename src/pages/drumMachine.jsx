@@ -146,7 +146,7 @@ const KeyPad = (props) => {
                 <div className='grid'>
                     {letterArr.map(item=>
                     <div key={'grid'+item} id={'grid'+item} className='d-flex justify-content-center align-items-center'>
-                        <button onTouchStart={()=>handlePlay(item)} onContextMenu={(e)=> e.preventDefault()} 
+                        <button onClick={()=>handlePlay(item)} onContextMenu={(e)=> e.preventDefault()} 
                         className='btn btn-lg btn-secondary drum-pad' id={'sound'+item}>
 
                             {item.toUpperCase()}
@@ -258,6 +258,16 @@ for (let item of audioPool){
 }
 //console.log(audioPool);
 
+const trya = [];
+trya[0] = new Audio(audioMapping['q']);
+trya[1] = new Audio(audioMapping['q']);
+trya[2] = new Audio(audioMapping['q']);
+trya[3] = new Audio(audioMapping['q']);
+trya[4] = new Audio(audioMapping['q']);
+trya[5] = new Audio(audioMapping['q']);
+trya[6] = new Audio(audioMapping['q']);
+trya[7] = new Audio(audioMapping['q']);
+trya[8] = new Audio(audioMapping['q']);
 
 
 /* main parent component */
@@ -272,23 +282,23 @@ const DrumMachine = () => {
     const refCount = useRef(0);
 
     const playsound = (lowerCaseKey) =>{
-        refCount.current = ((refCount.current+1) % 4);
+        refCount.current = ((refCount.current+1) % 8);
         setCounter(refCount.current);
 
-        let sound;
-        for (let item of audioPool){
-            if (item.key === lowerCaseKey){
-                sound = item.src[refCount.current]
-                console.log(refCount.current);
-            }
-        }
+        let sound = trya[refCount.current];
+
+        // for (let item of audioPool){
+        //     if (item.key === lowerCaseKey){
+        //         sound = item.src[refCount.current]
+        //     }
+        // }
 
 
 //        let sound = myarr[0];//audioPool['q'][1]; //audioPool['q'][1];//audioPool[lowerCaseKey][counter];
         //document.getElementById('audio'+lowerCaseKey)
         
-        sound.pause();
-        sound.currentTime = 0;
+        // sound.pause();
+        // sound.currentTime = 0;
         sound.volume = volume/10;
         sound.play();
     }
