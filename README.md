@@ -6,7 +6,7 @@ You can find the link to the app below.
 [Front End Suites](https://front-end-suites.vercel.app/)
 
 # Development
-The collect of apps is developed with each using a different combination of React, Redux, Bootstrap, Vanilla CSS to implement.
+The collection of apps is developed with each using a different combination of React, Redux, Bootstrap, Vanilla CSS.
 It is built on Vite using Node.js and managed with NPM. It is deployed on Vercel.
 
 # Full feature list
